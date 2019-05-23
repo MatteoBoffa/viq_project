@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Statistiche reparto con reparto</title>
+    <link rel="stylesheet" href="cssSecondaPagina.css">
+</head>
+<body>
+<div class="container">
+<div class="theHeaderCentrale">
+<h1>Juventus fc</h1>
+    <h2>Season 2018/2019</h2>
+</div>
+<div class="Obiettivi">
+    <h3>Obiettivi</h3>
+    <p>Nostro intento &eacute; quello di considerare tre macro-argomenti identificabili come:</p>
+    <ul>
+        <li>Statistiche solidit&aacute; difensiva</li>
+        <li>Statistiche 'aggressivit&aacute;' squadra</li>
+        <li>Rendimento offensivo</li>
+    </ul>
+    <p>Per ciascuno di essi tenteremo, attraverso le statistiche raccolte e una serie di grafici costruiti con esse, di valutare l'efficacia
+        della squadra nell'arco della stagione (sia attraverso una rappresentazione globale, sia con un'analisi degli andamenti).</p>
+</div>
+<div class="Form">
+    <h3>Analisi</h3>
+    <p>Selezionare quali informazioni visionare: </p>
+    <form name="Dati rappresentati">
+        <select name="Opzioni">
+             <option value="Statistiche solidità">Statistiche solidit&aacute; difensiva</option>
+             <option value="Statistiche aggressività" selected>Atteggiamento squadra</option>
+             <option value="Rendimento offensivo">Rendimento offensivo</option>
+        </select>
+        <!--QUA USA jQuery! -->
+        <input type="button" value="Scegli" ><!--onclick="function daDefinire()" -->
+        <input type="reset" value="Annulla">
+    </form>
+</div>
+
+<div class="Grafici">
+    <p>Parte dei grafici</p>
+</div>
+<div class="Commenti">
+    <p>Parte con commenti</p>
+</div>
+
+<div class="Footer">
+    <p>Tutti i dati provengono dalla seguente pagina di <a href="https://understat.com/league/Serie_A/2018">statistiche</a> </p>
+</div>
+</div>
+</body>
+</html>

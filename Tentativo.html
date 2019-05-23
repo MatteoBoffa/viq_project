@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ciao mamma</title>
+</head>
+<body>
+    <script>
+        window.onload = function () {
+            let data;
+            //Async request : defining "success" function
+            //
+            loadASync("serie_a_stats.csv", csv => {
+                data = csvParse(csv);
+                console.log(data);
+
+
+                let usefulData = filterData(data,["Team" , "G" , "GA"]);
+                // Creating obj we will use :
+                // / [ ... {
+                console.log(usefulData);
+
+
+                document.getElementById("myTable").append(tableToHtmlElement(data));
+            })
+        }
+
+    </script>
+</body>
+</html>

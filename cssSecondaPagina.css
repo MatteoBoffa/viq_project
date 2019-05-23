@@ -1,0 +1,71 @@
+body{
+    background-color: white;
+    color: black;
+    font-family: "Arial",sans-serif;
+}
+.container{
+    display: grid;
+    grid-template-areas:
+            'headerCentrale headerCentrale'
+            'obiettivi obiettivi'
+            'form form'
+            'grafici commenti'
+            'footer footer';
+}
+.container div{
+    margin: 2ex 1em;
+    padding: 2ex 1em;
+    border: black solid;
+    min-width: 30ex;
+}
+.theHeaderCentrale{
+    grid-area: headerCentrale;
+    padding: 0 1em;
+    border: black solid medium;
+    margin: 1ex 1em;
+    font-family: "Times New Roman", serif;
+    background-color: red;
+    text-align: center;
+    color: black;
+}
+.Obiettivi{
+    grid-area: obiettivi;
+    text-align: justify;
+}
+.Form{
+    grid-area: form;
+    text-align: center;
+}
+.Grafici{
+    grid-area: grafici;
+    text-align: center;
+}
+.Commenti{
+    grid-area: commenti;
+    text-align: center;
+}
+.Footer{
+    grid-area: footer;
+    background-color: red;
+    font-size: small;
+    color: black;
+    text-align: center;
+}
+
+@media only screen and (max-width: 780px) {
+    .container{
+        display: grid;
+        grid-template-areas:
+                'headerCentrale'
+                'obiettivi'
+                'form'
+                'grafici'
+                'commenti'
+                'footer';
+    }
+    .container > div{
+        width: 95%;
+        min-width: 60ex;
+        text-align: center;
+    }
+}

@@ -1,0 +1,153 @@
+body{
+    background-color: white;
+    color: black;
+    font-family: "Arial",sans-serif;
+}
+.container{
+    display: grid;
+    grid-template-areas:
+            'headerCentrale headerCentrale'
+            'spiegazioni indici'
+            'esempio esempio'
+            'newPage newPage'
+            'footer1 footer1';
+}
+
+#nome1{
+    display: inline;
+    float: left;
+    margin-left: 3em;
+    margin-bottom: 3ex;
+}
+#nome2{
+    display: inline;
+    float: right;
+    margin-right: 3em;
+    margin-bottom: 3ex;
+}
+.theHeaderCentrale{
+    grid-area: headerCentrale;
+    padding: 0 1em;
+    border: black solid medium;
+    margin: 1ex 1em;
+    font-family: "Times New Roman", serif;
+    background-color: red;
+    text-align: center;
+    color: black;
+}
+.theHeaderCentrale > h1{
+    width: 30%;
+    min-width: 20px;
+    display: block;
+    margin: 2ex auto;
+    font-size: xx-large;
+}
+.Motivazioni{
+    grid-area: spiegazioni;
+    padding: 2ex 1em;
+    margin-top: 1ex;
+    margin-bottom: 1ex;
+    margin-left: 1em;
+    margin-right: 1em;
+    width: 90%;
+    text-align: justify;
+}
+.Motivazioni>h3{
+    color: red;
+}
+.Statistiche{
+    grid-area: indici;
+    padding: 2ex 1em;
+    margin-top: 1ex;
+    margin-bottom: 1ex;
+    margin-left: 1em;
+    width: 80%;
+    text-align: justify;
+    min-width: 30ex;
+}
+.Statistiche>h3{
+    color: red;
+}
+.Esempio{
+    grid-area: esempio;
+    text-align: center;
+    padding: 2ex 2em;
+    margin: 1ex 1em;
+}
+.Esempio>h3{
+    color: red;
+}
+.theFooter{
+    grid-area: footer1;
+    padding: 2ex 2em;
+    border: black solid medium;
+    margin: 1ex 1em;
+    background-color: red;
+    font-size: small;
+    color: black;
+    text-align: center;
+}
+.Nuova_Pagina{
+    grid-area: newPage;
+    padding: 2ex 2em;
+    margin: 1ex 1em;
+    border: black solid;
+}
+.Testo{
+    display: inline;
+    float: left;
+}
+.Nuova_Pagina>img{
+    margin-top: 2ex;
+    float: right;
+}
+a:link{
+    color: navy;
+}
+a:visited{
+    color: navy;
+}
+
+#myTable, #myTable tr, #myTable td{
+    border-collapse:collapse;
+    text-align: center;
+    border-bottom:black 1pt solid;
+    padding: 1ex 0.5em;
+    color: black;
+}
+#myTable thead, #myTable thead td{
+    background-color: red;
+    font-weight: bold;
+    padding-top: 4ex;
+    border: black 2pt solid;
+}
+#myTable thead{
+    padding: 10ex 0;
+}
+#myTable tbody tr:nth-child(even){
+    background-color: white;
+}
+#myTable tbody tr:nth-child(odd){
+    background-color: papayawhip;
+}
+
+@media only screen and (max-width: 1100px) {
+    .container{
+        display: grid;
+        grid-template-areas:
+                'headerCentrale'
+                'spiegazioni'
+                'indici'
+                'esempio'
+                'newPage'
+                'footer1';
+    }
+    .container > div{
+        width: 95%;
+        min-width: 60ex;
+        text-align: center;
+    }
+    .Statistiche{
+        min-height: 750px;
+    }
+}
