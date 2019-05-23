@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Ciao mamma</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script></head>
+    <script src="pr_functions.js"></script>
 </head>
 <body>
     <script>
@@ -15,16 +17,53 @@
                 console.log(data);
 
 
-                let usefulData = filterData(data,["Team" , "G" , "GA"]);
+                let usefulData = filterData(data,["Team", "PTS", "xPTS"]);
                 // Creating obj we will use :
                 // / [ ... {
                 console.log(usefulData);
 
+                let nomeSquadre = [];
 
-                document.getElementById("myTable").append(tableToHtmlElement(data));
+                for(let i=0;i<filterData(usefulData,["Team"]).length;i++){
+                    nomeSquadre.push(filterData(usefulData,["Team"])[i].Team);                }
+
+                console.log(nomeSquadre);
+
+                let punti = [];
+
+                for(let i=0;i<filterData(usefulData,["PTS"]).length;i++){
+                    punti.push((filterData(usefulData,["PTS"]))[i].PTS);
+                }
+                let expectedPoints = [];
+
+                for(let i=0;i<filterData(usefulData,["xPTS"]).length;i++){
+                    expectedPoints.push(noPlusNoMinus(usefulData,["xPTS"])[i].xPTS);
+                }
+                console.log(expectedPoints);
+                var trace1=
+                    {
+                        x: nomeSquadre,
+                        y: punti,
+                        type: 'bar',
+                        name: 'Punti'
+                        };
+                var trace2=
+                    {
+                        x: nomeSquadre,
+                        y: expectedPoints,
+                        type: 'bar',
+                        name: 'ExpectedPoints'
+                    };
+
+                var data = [trace1,trace2];
+
+                var layout = {barmode:'group'};
+
+                Plotly.newPlot('myDiv', data, layout);
             })
         }
-
     </script>
+    <div id="myDiv">
+    </div>
 </body>
 </html>

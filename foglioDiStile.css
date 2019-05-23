@@ -46,7 +46,7 @@ body{
     grid-area: spiegazioni;
     padding: 2ex 1em;
     margin-top: 1ex;
-    margin-bottom: 1ex;
+    margin-bottom: 0;
     margin-left: 1em;
     margin-right: 1em;
     width: 90%;
@@ -59,7 +59,7 @@ body{
     grid-area: indici;
     padding: 2ex 1em;
     margin-top: 1ex;
-    margin-bottom: 1ex;
+    margin-bottom: 0;
     margin-left: 1em;
     width: 80%;
     text-align: justify;
@@ -70,9 +70,9 @@ body{
 }
 .Esempio{
     grid-area: esempio;
-    text-align: center;
     padding: 2ex 2em;
-    margin: 1ex 1em;
+    margin: 0 1em;
+    width: 90%;
 }
 .Esempio>h3{
     color: red;
@@ -130,7 +130,12 @@ a:visited{
 #myTable tbody tr:nth-child(odd){
     background-color: papayawhip;
 }
-
+#myDiv{
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    min-width: 300px;
+}
 @media only screen and (max-width: 1100px) {
     .container{
         display: grid;
@@ -147,7 +152,15 @@ a:visited{
         min-width: 60ex;
         text-align: center;
     }
+    .Motivazioni{
+        text-align: center;
+    }
     .Statistiche{
         min-height: 750px;
+    }
+    #myDiv{
+        display: inline;
+        float: left;
+        width: 300px;
     }
 }

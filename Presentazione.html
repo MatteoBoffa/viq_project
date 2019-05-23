@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Presentazione ricerca</title>
+    <link rel="stylesheet" href="foglioDiStile.css">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script></head>
+</head>
+<body>
+<div class="container">
+    <div class="theHeaderCentrale">
+    <h1>VIQ PROJECT</h1>
+    <h2>a.a. 2018/2019</h2>
+    <h2 id="nome1">Matteo Boffa</h2>
+    <h2 id="nome2">Nicol&oacute; Bellarmino</h2>
+    </div>
+
+    <div class="Motivazioni">
+        <script src="pr_functions.js"></script>
+
+        <script>
+            window.onload = function () {
+                let data;
+                //Async request : defining "success" function
+                //
+                loadASync("serie_a_stats.csv", csv => {
+                    //CREAZIONE TABELLA
+                    data = csvParse(csv);
+                    let columns = ["N", "Team", "M", "W", "D", "L", "G", "GA", "PTS", "xG", "xGA", "xPTS"];
+                    document.getElementById("myTable").append(tableToHtmlElement(noPlusNoMinus(data, columns)));
+
+                    //CREAZIONE GRAFICO
+                    let usefulData2 = filterData(data,["Team", "PTS", "xPTS"]);
+                    let nomeSquadre = [];
+                    for(let i=0;i<filterData(usefulData2,['Team']).length;i++){
+                        nomeSquadre.push((filterData(usefulData2,['Team'])[i]).Team);
+                    }
+                    let punti = [];
+                    for(let i=0;i<filterData(usefulData2,['PTS']).length;i++){
+                        punti.push((filterData(usefulData2,['PTS'])[i]).PTS);
+                    }
+                    let expectedPoints = [];
+                    for(let i=0;i<filterData(usefulData2,['xPTS']).length;i++){
+                        expectedPoints.push((filterData(usefulData2,['xPTS'])[i]).xPTS);
+                    }
+                    console.log(punti);
+                    var trace1=
+                        {
+                            x: nomeSquadre,
+                            y: punti,
+                            type: 'bar',
+                            name: 'Punti'
+                        };
+                    var trace2=
+                        {
+                            x: nomeSquadre,
+                            y: expectedPoints,
+                            type: 'bar',
+                            name: 'ExpectedPoints'
+                        };
+                    var data = [trace1,trace2];
+                    var layout = {barmode:'group'};
+                    Plotly.newPlot('myDiv', data, layout);
+                })
+            }
+        </script>
+        <h3>Classifica Serie A 2018/2019</h3>
+        <div id = "myTable"></div>
+        </div>
+
+    <div class="Statistiche">
+     <h3>Motivazioni:</h3>
+        <p>Sono diversi i motivi che ci hanno spinto ad intraprendere questa piccola ricerca. Innanzitutto
+            il desiderio di dare, nel nostro piccolo, il contributo ad un approccio pi&uacute; scientifico all'analisi
+            calcistica, troppo spesso invece trattata alla stregua del chiacchierio da bar. Altri sport, come basket
+            e baseball, hanno gi&aacute; da tempo sposato questo metodo e riteniamo che sia giunto il tempo che anche il
+            calcio segua questa via. Segue poi il tentativo di spiegare (e, da tifosi, di spiegarci), con l'ausilio
+            di alcune statistiche che spiegheremo in seguito, quale siano le ragioni per cui la Juventus abbia, a fronte
+            di una rosa di grandissimo valore, fallito nella met&aacute; di quelli che erano inizialmente gli obiettivi
+            stagionali e deluso, parlando di qualit&aacute di gioco espresso, negli altri.</p>
+    <h3>Statistiche utilizzate</h3>
+        <p>Come anticipato nell'introduzione, queste saranno le principali statistiche che utilizzeremo:</p>
+        <p>Indici per ciascuna partita:</p>
+        <ul>
+            <li>Goal segnati</li>
+            <li>Goal subiti</li>
+            <li>Tiri effettuati</li>
+            <li>Tiri concessi</li>
+            <li>Contrasti effettuati</li>
+            <li>Tackle vinti (percentage)</li>
+            <li>Palle intercettate</li>
+            <li>Falli effettuati</li>
+            <li>Passaggi eseguiti</li>
+            <li>Passaggi eseguiti con successo</li>
+            <li>Possesso palla</li>
+        </ul>
+        <p>A cui si aggiungono altri 3 parametri molto utilizzati nel settore, ovvero:</p>
+        <ul>
+            <li>Expected Goal (xG): si associa un 'coefficiente di pericolosità' (assegnato da analisti dopo aver analizzato un grande campione di tentativi simili)
+                a ciascun tiro effettuato durante la partita; tutti questi addendi vengono poi sommati a rappresentare un indicatore di quanti
+                goal avrebbe 'meritato' di segnare la squadra</li>
+            <li>Expected Goal against (xGa): indice speculare a quello precedente e rappresenta i goal potenziali a fronte delle occasioni concesse</li>
+            <li>Key passes: passaggi in seguito ai quali &eacute; seguito un tiro verso la porta avversaria</li>
+        </ul>
+        <p>Indici sull'intero campionato</p>
+        <ul>
+            <li>Punti ottenuti</li>
+            <li>Expected points: si vanno a tabulare le differenze tra xG e xGa per ogni partita e si assegna ad ogni valore un determinato numero di punti guadagnati</li>
+        </ul>
+     </div>
+
+     <div  class="Esempio">
+        <h3>Esempio</h3>
+        <p>Vediamo subito un esempio:</p>
+         <div id="myDiv">
+         </div>
+     </div>
+
+     <div class="Nuova_Pagina">
+        <div class="Testo">
+        <p>Terminata questa necessaria introduzione, passiamo ora all'analisi della stagione bianconera.</p>
+        <p>Cliccare sulla freccia avanti per passare alla pagina successiva</p>
+        </div>
+        <img src="Freccia.jpg" alt="Freccia cliccabile" usemap="#areeCliccabili" width="50" height="50"/>
+        <map name="areeCliccabili">
+            <area shape="rect" coords="0,0,50,50" href="Statistiche_reparto_con_reparto.html" />
+        </map>
+     </div>
+
+    <div  class="theFooter">
+    <p>Per avere pi&uacute; informazioni sugli indici xG, xGa e Expected Points si consiglia la visione dei seguenti link:</p>
+    <ul>
+        <li><a href="https://www.ultimouomo.com/cosa-sono-gli-expected-goals/">L'Ultimo Uomo</a></li>
+        <li><a href="https://www.modernfitba.com/blogs/2018/9/8/re-introducing-expected-points-xpxpoints">Modernfitba</a></li>
+    </ul>
+    </div>
+
+</div>
+</body>
+</html>
