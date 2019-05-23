@@ -29,18 +29,17 @@
                     document.getElementById("myTable").append(tableToHtmlElement(noPlusNoMinus(data, columns)));
 
                     //CREAZIONE GRAFICO
-                    let usefulData2 = filterData(data,["Team", "PTS", "xPTS"]);
                     let nomeSquadre = [];
-                    for(let i=0;i<filterData(usefulData2,['Team']).length;i++){
-                        nomeSquadre.push((filterData(usefulData2,['Team'])[i]).Team);
+                    for(let i=0;i<filterData(data,['Team']).length;i++){
+                        nomeSquadre.push((filterData(data,['Team'])[i]).Team);
                     }
                     let punti = [];
-                    for(let i=0;i<filterData(usefulData2,['PTS']).length;i++){
-                        punti.push((filterData(usefulData2,['PTS'])[i]).PTS);
+                    for(let i=0;i<filterData(data,['PTS']).length;i++){
+                        punti.push((filterData(data,['PTS'])[i]).PTS);
                     }
                     let expectedPoints = [];
-                    for(let i=0;i<noPlusNoMinus(usefulData2,['xPTS']).length;i++){
-                        expectedPoints.push((noPlusNoMinus(usefulData2,['xPTS'])[i]).xPTS);
+                    for(let i=0;i<noPlusNoMinus(data,['xPTS']).length;i++){
+                        expectedPoints.push((noPlusNoMinus(data,['xPTS'])[i]).xPTS);
                     }
                     console.log(punti);
                     var trace1=

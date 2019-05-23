@@ -120,6 +120,7 @@ function filterData(data,headers){
         }
         filteredData.push(obj);
     }
+    filteredData.pop();
     return filteredData;
 }
 /**
@@ -151,6 +152,7 @@ function noPlusNoMinus(data,headers){
         }
         filteredData.push(obj);
     }
+    filteredData.pop();
     return filteredData;
 }
 
