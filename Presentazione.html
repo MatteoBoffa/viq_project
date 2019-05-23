@@ -25,8 +25,10 @@
                 loadASync("serie_a_stats.csv", csv => {
                     //CREAZIONE TABELLA
                     data = csvParse(csv);
+                    console.log(data);
                     let columns = ["N", "Team", "M", "W", "D", "L", "G", "GA", "PTS", "xG", "xGA", "xPTS"];
                     document.getElementById("myTable").append(tableToHtmlElement(noPlusNoMinus(data, columns)));
+
 
                     //CREAZIONE GRAFICO
                     let nomeSquadre = [];
