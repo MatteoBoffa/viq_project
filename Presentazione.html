@@ -40,8 +40,8 @@
                         punti.push((filterData(usefulData2,['PTS'])[i]).PTS);
                     }
                     let expectedPoints = [];
-                    for(let i=0;i<filterData(usefulData2,['xPTS']).length;i++){
-                        expectedPoints.push((filterData(usefulData2,['xPTS'])[i]).xPTS);
+                    for(let i=0;i<noPlusNoMinus(usefulData2,['xPTS']).length;i++){
+                        expectedPoints.push((noPlusNoMinus(usefulData2,['xPTS'])[i]).xPTS);
                     }
                     console.log(punti);
                     var trace1=
