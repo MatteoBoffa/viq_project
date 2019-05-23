@@ -22,7 +22,6 @@
             window.onload = function () {
                 let data;
                 //Async request : defining "success" function
-                //
                 loadASync("serie_a_stats.csv", csv => {
                     //CREAZIONE TABELLA
                     data = csvParse(csv);
@@ -112,7 +111,16 @@
      <div  class="Esempio">
         <h3>Esempio</h3>
         <p>Vediamo subito un esempio:</p>
+         <div style="border: solid black; padding: 1ex 1em">
+         <h4>Confronto punti-expected points per ciascuna squadra</h4>
          <div id="myDiv">
+         </div>
+             <h4 style="color: red;">Commento:</h4>
+             <p>Come si pu&oacute; notare, affidandoci alla bont&aacute; degli indicatori adottati, alcune
+                 squadre hanno reso pi&uacute; di quello che ci si poteva aspettare (la Juventus in primis,
+                 che secondo la classifica degli Expected Points sarebbe addirittura terza) mentre altre
+                 (l'esempio della Fiorentina fa da padrona a riguardo), pur avendo prodotto molto, non sono
+                 riuscite ad essere abbastanza ciniche per concretizzare.</p>
          </div>
      </div>
 

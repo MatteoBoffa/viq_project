@@ -161,3 +161,23 @@ function creaVettore(string,vettoreOggetti){
     }
     return vettore;
 }
+/*
+Il seguente frammento di codice serve a prendere il valore selezionato da un form
+usando jquery
+
+$(document).ready(function(){
+  $("#btn1").click(function(){
+    alert("Text: " + $("#Opzioni").val());
+  });
+
+  avendo così definito il form
+  <form id="dati">
+<select id="Opzioni">
+<option value="Stats1">Stas</option>
+<option value="Stats2">Stas2</option>
+<option value="Stats3">Stas3</option>
+
+</select></form>
+
+<button id="btn1">Show Text</button>
+ */
