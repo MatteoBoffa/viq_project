@@ -183,3 +183,25 @@ $(document).ready(function(){
 
 <button id="btn1">Show Text</button>
  */
+function selectCorrect(data,selection){
+
+    let attackStats = ["Data", "Match", "Risultato", "Goal", "Expected Goals", "Tiri eseguiti"];
+    let defensiveStats = ["Data", "Match", "Risultato", "Goal subiti", "Expected goals subiti", "Tiri subiti"];
+    let attitudeStats = ["Data", "Match", "Risultato", "Palle intercettate", "Falli (Juve)", "Passaggi riusciti", "Possesso"];
+    let usefulData;
+    selection=parseInt(selection);
+    switch (selection) {
+        case 1 :
+            usefulData = filterData(data,defensiveStats);
+            break;
+        default :
+            usefulData = filterData(data,attitudeStats);
+            break;
+        case 3:
+            usefulData = filterData(data,attackStats);
+            break;
+    }
+    $("#grafic").html(tableToHtmlElement(usefulData));
+
+}
+

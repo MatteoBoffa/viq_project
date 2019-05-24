@@ -28,26 +28,42 @@
     <h3>Analisi</h3>
     <p>Selezionare quali informazioni visionare: </p>
     <form name="Dati rappresentati">
-        <select name="Opzioni">
-             <option value="Statistiche solidità">Statistiche solidit&aacute; difensiva</option>
-             <option value="Statistiche aggressività" selected>Atteggiamento squadra</option>
-             <option value="Rendimento offensivo">Rendimento offensivo</option>
+        <select id="Opzioni">
+             <option value="1">Statistiche solidit&aacute; difensiva</option>
+             <option value="2" selected>Atteggiamento squadra</option>
+             <option value="3">Rendimento offensivo</option>
         </select>
         <!--QUA USA jQuery! -->
-        <input type="button" id="toClick" value="Scegli" ><!--onclick="function daDefinire()" -->
-        <input type="reset" value="Annulla">
+        <input type="button" id="toGo" value="Scegli" ><!--onclick="function daDefinire()" -->
+        <input type="reset" id ="toReset" value="Annulla">
         <script>
-      /*  $(document).ready(function () {
-            $()
-        })  */
+            let data;
+            window.onload = function() {
+                loadASync("Juventus_Stats_.csv",csv =>{
+                    data = csvParse(csv);
+                    console.log(data);
+                })
+            };
+            setTimeout(function(){
+                console.log(data);
+            },1000);
+
+
+            var value;
+                $("#toGo").click(function () {
+                    value = $("#Opzioni").val();
+                   selectCorrect(data,value);
+                });
+
+
         </script>
     </form>
 </div>
 
-<div class="Grafici">
+<div id="grafic" class="Grafici">
     <p>Parte dei grafici</p>
 </div>
-<div class="Commenti">
+<div id="comments" class="Commenti">
     <p>Parte con commenti</p>
 </div>
 
