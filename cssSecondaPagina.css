@@ -44,6 +44,9 @@ body{
     grid-area: commenti;
     text-align: center;
 }
+.comments{
+    display: none;
+}
 .Footer{
     grid-area: footer;
     background-color: red;
