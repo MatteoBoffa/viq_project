@@ -79,11 +79,11 @@ function csvParse(csv){
  */
 function tableToHtmlElement(data){
     let res = document.createElement("table");
-    let html ="<tr>";
+    let html ="<thead>";
     for(let h in data[0])
         if(data[0].hasOwnProperty(h))
             html+="<th>"+h+"</th>";
-    html+="</tr>";
+    html+="</thead><tbody>";
     for(let i=0; i<data.length; ++i){
         html+="<tr>";
         for(let f in data[i])
@@ -91,7 +91,7 @@ function tableToHtmlElement(data){
                 html+="<td>"+data[i][f]+"</td>";
         html+="</tr>";
     }
-    html+="</table>";
+    html+="</tbody></table>";
     res.innerHTML = html;
     return res;
 }
