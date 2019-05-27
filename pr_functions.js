@@ -183,3 +183,51 @@ $(document).ready(function(){
 
 <button id="btn1">Show Text</button>
  */
+function selectCorrect(data,selection){
+
+    let attackStats = ["Data", "Match", "Risultato", "Goal", "Expected Goals", "Tiri eseguiti"];
+    let defensiveStats = ["Data", "Match", "Risultato", "Goal subiti", "Expected goals subiti", "Tiri subiti"];
+    let attitudeStats = ["Data", "Match", "Risultato", "Palle intercettate", "Falli (Juve)", "Passaggi riusciti", "Possesso"];
+    let usefulData;
+    let noCom;
+    selection=parseInt(selection);
+    switch (selection) {
+        case 1 :
+            usefulData = filterData(data,defensiveStats);
+            noCom="#commento1";
+            break;
+        default :
+            usefulData = filterData(data,attitudeStats);
+            noCom="#commento2";
+            break;
+        case 3:
+            usefulData = filterData(data,attackStats);
+            noCom="#commento3";
+            break;
+    }
+    $("#grafic").html(tableToHtmlElement(usefulData));
+    $(".comments").css({"display": "none"});
+    $(noCom).css({"display" : "block"});
+
+}
+
+function generaGrafici(data) {
+    var trace1=
+        {
+            x: nomeSquadre,
+            y: punti,
+            type: 'bar',
+            name: 'Punti'
+        };
+    var trace2=
+        {
+            x: nomeSquadre,
+            y: expectedPoints,
+            type: 'bar',
+            name: 'ExpectedPoints'
+        };
+    var data = [trace1,trace2];
+    var layout = {barmode:'group'};
+    Plotly.newPlot('myDiv', data, layout);
+}
+
