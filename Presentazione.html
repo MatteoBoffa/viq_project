@@ -25,10 +25,11 @@
                 loadASync("serie_a_stats.csv", csv => {
                     //CREAZIONE TABELLA
                     data = csvParse(csv);
+                    console.log(data);
                     let columns = ["N", "Team", "M", "W", "D", "L", "G", "GA", "PTS", "xG", "xGA", "xPTS"];
                     document.getElementById("myTable").append(tableToHtmlElement(noPlusNoMinus(data, columns)));
 
-                    //CREAZIONE GRAFICO
+                    //CREAZIONE GRAFICO 1
                     let nomeSquadre = [];
                     for(let i=0;i<filterData(data,['Team']).length;i++){
                         nomeSquadre.push((filterData(data,['Team'])[i]).Team);
@@ -41,7 +42,6 @@
                     for(let i=0;i<noPlusNoMinus(data,['xPTS']).length;i++){
                         expectedPoints.push((noPlusNoMinus(data,['xPTS'])[i]).xPTS);
                     }
-                    console.log(punti);
                     var trace1=
                         {
                             x: nomeSquadre,
@@ -56,9 +56,44 @@
                             type: 'bar',
                             name: 'ExpectedPoints'
                         };
-                    var data = [trace1,trace2];
+                    var datiGrafico = [trace1,trace2];
                     var layout = {barmode:'group'};
-                    Plotly.newPlot('myDiv', data, layout);
+                    Plotly.newPlot('myDiv', datiGrafico, layout);
+
+                    //GRAFICO 2
+
+                    let datiSecondo = noPlusNoMinus(data,['Team','xPTS']);
+                    datiSecondo.sort((a,b)=>b.xPTS-a.xPTS);
+
+                    let nomeSquadre1=[];
+                    for(let i=0;i<filterData(datiSecondo,['Team']).length;i++){
+                        nomeSquadre1.push((filterData(datiSecondo,['Team'])[i]).Team);
+                    }
+                    expectedPoints=[];
+                    for(let i=0;i<noPlusNoMinus(datiSecondo,['xPTS']).length;i++){
+                        expectedPoints.push((noPlusNoMinus(datiSecondo,['xPTS'])[i]).xPTS);
+                    }
+                    var data2=[
+                        {
+                            x: expectedPoints,
+                            y: nomeSquadre1,
+                            orientation: 'h',
+                            type: 'bar'
+                        }
+                    ]
+                    Plotly.newPlot('myDiv2', data2);
+
+                    //GRAFICO 3
+
+                    var data3=[
+                        {
+                            x: punti,
+                            y: nomeSquadre,
+                            orientation: 'h',
+                            type: 'bar'
+                        }
+                    ]
+                    Plotly.newPlot('myDiv3', data3);
                 })
             }
         </script>
@@ -110,16 +145,43 @@
      <div  class="Esempio">
         <h3>Esempio</h3>
         <p>Vediamo subito un esempio:</p>
-         <div style="border: solid black; padding: 1ex 1em">
+         <div style="border: solid black; padding: 1ex 1em; margin-bottom: 2ex">
          <h4>Confronto punti-expected points per ciascuna squadra</h4>
          <div id="myDiv">
          </div>
              <h4 style="color: red;">Commento:</h4>
-             <p>Come si pu&oacute; notare, affidandoci alla bont&aacute; degli indicatori adottati, alcune
-                 squadre hanno reso pi&uacute; di quello che ci si poteva aspettare (la Juventus in primis,
-                 che secondo la classifica degli Expected Points sarebbe addirittura terza) mentre altre
-                 (l'esempio della Fiorentina fa da padrona a riguardo), pur avendo prodotto molto, non sono
-                 riuscite ad essere abbastanza ciniche per concretizzare.</p>
+             <p>Quanto rappresentato sopra ha una duplice valenza:</p>
+             <ol>
+                 <li> serve ad esemplificare la statistica degli 'expected points'
+                     in modo che chi visiona la pagina vi prenda familiarit&aacute. Osservando il rendimento
+                     reale ed 'atteso' di ciascuna squadra si pu&oacute; notare come alcune abbiano capitalizzato
+                     meglio le occasioni loro concesse mentre altre, la Fiorentina per esempio, abbiano prodotto
+                     molto pi&uacute; di quello che effettivamente hanno poi raccolto</li>
+                 <li> traspare gi&aacute; una delle tematiche che ci accompagneranno nella nostra analisi successiva:
+                     che strana stagione &eacute; stata quella dei Campioni d'Italia? </li>
+             </ol>
+         </div>
+         <div style="text-align: center; border: solid black; margin-top: 2ex; ">
+             <h4 style="text-align: left;padding: 2ex 1em">Confronto classifica usando real points ed expected points</h4>
+             <div style="display: block">
+                <div style="padding: 1ex 1em; display: inline-block; float: right;width: 45%">
+                    <h4>Classifica Serie A (expected points)</h4>
+                    <div id="myDiv2">
+                    </div>
+                </div>
+                <div style="padding: 1ex 1em; display: inline-block; float: left;width: 45%">
+                    <h4>Classifica Serie A (real points)</h4>
+                    <div id="myDiv3">
+                    </div>
+                 </div>
+             </div>
+             <div style="display: block;  padding: 2ex 1em">
+                <h4 style="color: red;">Commento:</h4>
+                 <p>A confermare quanto detto nel punto 1 dell'esempio precedente possiamo notare che, a seconda dell'indicatore scelto,
+                     le classifiche sarebbe ben diverse: </p>
+                 <p>il Napoli sarebbe infatti primo classificato (con margine di una partita),
+                     la Juventus rischierebbe il terzo posto e la lotta salvezza assumerebbe dei connotati clamorosi</p>
+             </div>
          </div>
      </div>
 
