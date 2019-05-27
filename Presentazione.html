@@ -74,8 +74,8 @@
                         nomeSquadre1.push((filterData(datiSecondo,['Team'])[i]).Team);
                     }
                     expectedPoints=[];
-                    for(let i=0;i<noPlusNoMinus(datiSecondo,['xPTS']).length;i++){
-                        expectedPoints.push((noPlusNoMinus(datiSecondo,['xPTS'])[i]).xPTS);
+                    for(let i=0;i<filterData(datiSecondo,['xPTS']).length;i++){
+                        expectedPoints.push((filterData(datiSecondo,['xPTS'])[i]).xPTS);
                     }
                     var data2=[
                         {
@@ -92,7 +92,8 @@
                     Plotly.newPlot('myDiv2', data2,layout);
 
                     //GRAFICO 3
-
+                    console.log(expectedPoints);
+                    console.log(nomeSquadre);
                     var data3=[
                         {
                             x: punti,
@@ -188,7 +189,7 @@
                  <p>A confermare quanto detto nel punto 1 dell'esempio precedente possiamo notare che, a seconda dell'indicatore scelto,
                      le classifiche sarebbe ben diverse: </p>
                  <p>il Napoli sarebbe infatti primo classificato (con margine di una partita),
-                     la Juventus rischierebbe il terzo posto e la lotta salvezza assumerebbe dei connotati clamorosi</p>
+                     la Juventus rischierebbe il quarto posto e la lotta salvezza assumerebbe connotati diversi rispetto a quella reale</p>
              </div>
          </div>
      </div>
