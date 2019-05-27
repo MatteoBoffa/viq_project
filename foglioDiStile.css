@@ -130,12 +130,6 @@ a:visited{
 #myTable tbody tr:nth-child(odd){
     background-color: papayawhip;
 }
-#myDiv{
-    display: block;
-    margin: 0 auto;
-    width: 100%;
-    min-width: 300px;
-}
 @media only screen and (max-width: 1100px) {
     .container{
         display: grid;
@@ -159,8 +153,6 @@ a:visited{
         min-height: 750px;
     }
     #myDiv{
-        display: inline;
-        float: left;
-        width: 300px;
+        width: 60%;
     }
 }
