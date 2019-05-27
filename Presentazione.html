@@ -47,17 +47,21 @@
                             x: nomeSquadre,
                             y: punti,
                             type: 'bar',
-                            name: 'Punti'
+                            name: 'Punti',
+                            marker:{color:"red"}
                         };
                     var trace2=
                         {
                             x: nomeSquadre,
                             y: expectedPoints,
                             type: 'bar',
-                            name: 'ExpectedPoints'
+                            name: 'ExpectedPoints',
+                            marker:{color:"navy"}
                         };
                     var datiGrafico = [trace1,trace2];
-                    var layout = {barmode:'group'};
+                    var layout = {barmode:'group',
+                                title:"Confronto punti-expected points per ciascuna squadra",
+                                margin:{t:50,l:60,r:30,b:80}};
                     Plotly.newPlot('myDiv', datiGrafico, layout);
 
                     //GRAFICO 2
@@ -78,10 +82,14 @@
                             x: expectedPoints,
                             y: nomeSquadre1,
                             orientation: 'h',
-                            type: 'bar'
+                            type: 'bar',
+                            marker:{color:"orange"}
                         }
                     ]
-                    Plotly.newPlot('myDiv2', data2);
+                    var layout = {margin:{t:40,l:150,r:30,b:30},
+                                  title:"Classifica serie A (expected points)",
+                                  };
+                    Plotly.newPlot('myDiv2', data2,layout);
 
                     //GRAFICO 3
 
@@ -90,10 +98,13 @@
                             x: punti,
                             y: nomeSquadre,
                             orientation: 'h',
-                            type: 'bar'
+                            type: 'bar',
+                            marker:{color:"navy"}
                         }
                     ]
-                    Plotly.newPlot('myDiv3', data3);
+                    var layout = {margin:{t:40,l:150,r:30,b:30},
+                        title:"Classifica serie A (real points)"};
+                    Plotly.newPlot('myDiv3', data3,layout);
                 })
             }
         </script>
@@ -146,7 +157,6 @@
         <h3>Esempio</h3>
         <p>Vediamo subito un esempio:</p>
          <div style="border: solid black; padding: 1ex 1em; margin-bottom: 2ex">
-         <h4>Confronto punti-expected points per ciascuna squadra</h4>
          <div id="myDiv">
          </div>
              <h4 style="color: red;">Commento:</h4>
@@ -165,12 +175,10 @@
              <h4 style="text-align: left;padding: 2ex 1em">Confronto classifica usando real points ed expected points</h4>
              <div style="display: block">
                 <div style="padding: 1ex 1em; display: inline-block; float: right;width: 45%">
-                    <h4>Classifica Serie A (expected points)</h4>
                     <div id="myDiv2">
                     </div>
                 </div>
                 <div style="padding: 1ex 1em; display: inline-block; float: left;width: 45%">
-                    <h4>Classifica Serie A (real points)</h4>
                     <div id="myDiv3">
                     </div>
                  </div>
