@@ -184,33 +184,38 @@ $(document).ready(function(){
 function selectCorrect(data,selection){
 
     let attackStats = ["Data", "Match", "Risultato", "Goal", "Expected Goals", "Tiri eseguiti"];
-    let defensiveStats = ["Data", "Match", "Risultato", "Expected Goals", "Expected goals subiti", "Tiri subiti"];
+    let defensiveStats = ["Data", "Match", "Risultato", "Expected Goals", "Expected goals subiti", "Tiri subiti", "Goal", "Goal subiti"];
     let attitudeStats = ["Data", "Match", "Risultato", "Palle intercettate", "Falli (Juve)", "Passaggi riusciti", "Possesso"];
     let usefulData;
     let noCom1;
     let noCom2;
+    let noCom3;
     selection=parseInt(selection);
     switch (selection) {
         case 1 :
             usefulData = filterData(data,defensiveStats);
             noCom1="#commento11";
             noCom2="#commento21";
+            noCom3="#commento31";
             break;
         default :
             usefulData = filterData(data,attitudeStats);
             noCom1="#commento12";
             noCom2="#commento22";
+            noCom3="#commento32";
             break;
         case 3:
             usefulData = filterData(data,attackStats);
             noCom1="#commento13";
             noCom2="#commento23";
+            noCom3="#commento33";
             break;
     }
     $(".comments").css({"display": "none"});
     $(".Grafici").css({"display":"block"});
     $(noCom1).css({"display" : "block"});
     $(noCom2).css({"display" : "block"});
+    $(noCom3).css({"display" : "block"});
     generaGrafici(usefulData);
 
 }
@@ -226,27 +231,87 @@ function generaGrafici(UData) {
         aData.push(temp[2]+"-"+temp[0]+"-"+temp[1]);
 
     }
-    console.log(aData);
+    //console.log(aData);
     let axGA =[];
     date =  filterData(UData,["Expected goals subiti"]);
     for(let i=0;i<date.length;i++){
         axGA.push(+date[i]["Expected goals subiti"]);
     }
     date = filterData(UData,["Expected Goals"]);
-    console.log(axGA);
+    //console.log(axGA);
 
-    let AGa =[];
+    let AxG =[];
     for(let i=0;i<date.length;i++){
-        AGa.push(+date[i]["Expected Goals"]);
+        AxG.push(+date[i]["Expected Goals"]);
     }
-    console.log(AGa);
+    //console.log(AxG);
 
+    let rapporto=[];
+    for(let i=0;i<date.length;i++){
+        rapporto.push(axGA[i]/AxG[i]);
+    }
 
     //SECONDO GRAFICO
-    let sA = filterData(UData,["Tiri subiti"]);
 
+    date = filterData(UData,["Tiri subiti","Goal", "Goal subiti", "Risultato", "Match", "Expected goals subiti"]);
+    let asAW = [];
+    let asAD = [];
+    let asAL = [];
+    let aMatchW = [];
+    let aMatchD = [];
+    let aMatchL = [];
+    let axGAW = [];
+    let axGAD = [];
+    let axGAL = [];
 
-    let trace1=
+    for(let i=0;i<date.length;i++){
+        if(+date[i]["Goal"]>+date[i]["Goal subiti"]){
+            asAW.push(+date[i]["Tiri subiti"]);
+            aMatchW.push(date[i]["Match"]+" "+date[i]["Risultato"]);
+            axGAW.push(+date[i]["Expected goals subiti"]);
+        }else if(+date[i]["Goal"]==+date[i]["Goal subiti"]){
+            asAD.push(+date[i]["Tiri subiti"]);
+            aMatchD.push(+date[i]["Match"]+" "+date[i]["Risultato"]);
+            axGAD.push(date[i]["Expected goals subiti"]);
+        }else if(+date[i]["Goal"]<+date[i]["Goal subiti"]){
+            asAL.push(+date[i]["Tiri subiti"]);
+            aMatchL.push(date[i]["Match"]+" "+date[i]["Risultato"]);
+            axGAL.push(+date[i]["Expected goals subiti"]);
+        }
+    }
+
+    //GRAFICO 3
+
+    let aMatchBAM = [];
+    let axGABAM = [];
+    let asABAM = [];
+
+    let aMatchAAM = [];
+    let axGAAAM = [];
+    let asAAAM = [];
+    let Avg1;
+    let somma1=0;
+    let Avg2;
+    let somma2=0;
+
+    for(let i=0;i<date.length;i++){
+        if(aData[i]<'2019-02-20'){
+            asABAM.push(+date[i]["Tiri subiti"]);
+            aMatchBAM.push(date[i]["Match"]+" "+date[i]["Risultato"]);
+            axGABAM.push(+date[i]["Expected goals subiti"]);
+        }else{
+            asAAAM.push(+date[i]["Tiri subiti"]);
+            aMatchAAM.push(date[i]["Match"]+" "+date[i]["Risultato"]);
+            axGAAAM.push(+date[i]["Expected goals subiti"]);
+        }
+       somma1=somma1+parseInt(date[i]["Tiri subiti"]);
+        somma2=somma2+parseInt(date[i]["Expected goals subiti"]);
+    }
+    Avg1=somma1/date.length;
+    Avg2=somma2/date.length;
+    let data;
+    //GRAFICO 1
+    /*let trace1=
         {
             x: aData,
             y: axGA,
@@ -258,7 +323,7 @@ function generaGrafici(UData) {
     let trace2=
         {
             x: aData,
-            y: AGa,
+            y: AxG,
             type: 'scatter',
             name: 'xGoal',
             line : {
@@ -266,9 +331,20 @@ function generaGrafici(UData) {
             },
             mode: 'lines',
         };
-    let data = [trace1,trace2];
+    let data = [trace1,trace2];*/
 
-    let layout = {title:"Confronto xGa-Ga stagionale",
+    data = [
+        {
+            x:aData,
+            y:rapporto,
+            type: 'scatter',
+            name: 'Rapporto xGA/xG',
+            line:{color:"orange"},
+            mode: 'lines+markers'
+        }
+    ]
+
+   /* let layout = {title:"Confronto xGa-Ga stagionale",
         shapes: [{
             type: 'line',
             x0: '2019-02-20',
@@ -281,8 +357,176 @@ function generaGrafici(UData) {
                 width: 1.5,
                 dash: 'dot'
             }
-        }]};
+        }]};*/
+
+        let layout = {
+            title:"Confronto xGA-xG Stagionale",
+            shapes: [{
+                type: 'line',
+                x0: '2019-02-20',
+                y0: 0,
+                x1: '2019-02-20',
+                //yref: 'paper',
+                y1: 3.5,
+                line: {
+                    color: 'grey',
+                    width: 1.5,
+                    dash: 'dot'
+                }
+            }],
+            xaxis: {
+                title: 'Date giornate'
+            },
+            yaxis: {
+                title: 'Rapporto xGA/xG'
+            }
+        };
     Plotly.newPlot('grafic1', data, layout);
+
+    console.log("Interessa "+asAW);
+    console.log("Interessa "+asAD);
+    console.log("Interessa "+asAL);
+    console.log("Interessa "+axGAW);
+    console.log("Interessa "+axGAD);
+    console.log("Interessa "+axGAL);
+
+    //GRAFICO 2
+    let trace3={
+        x: axGAW,
+        y: asAW,
+        type: 'scatter',
+        mode: 'markers',
+        text: aMatchW,
+        marker:{
+            size: 12,
+            color: 'green'
+        },
+        name: 'Won'
+    };
+    let trace4={
+        x: axGAD,
+        y: asAD,
+        type: 'scatter',
+        mode: 'markers',
+        text: aMatchD,
+        marker:{
+            size: 12,
+            color: 'yellow'
+        },
+        name: 'Draw'
+    };
+    let trace5={
+        x: axGAL,
+        y: asAL,
+        type: 'scatter',
+        mode: 'markers',
+        text: aMatchL,
+        marker:{
+            size: 12,
+            color: 'red'
+        },
+        name: 'Lost'
+    };
+
+    data=[trace3, trace4, trace5];
+    layout = {title:"Analisi stagionale numero tiri ed occasioni concesse",
+        shapes: [
+            {
+            type: 'line',
+            x0: 0,
+            y0: Avg1,
+            x1: 2.4,
+            //yref: 'paper',
+            y1: Avg1,
+            line: {
+                color: 'grey',
+                width: 1.5,
+                dash: 'dot'
+                }
+            },{
+                type: 'line',
+                x0: Avg2,
+                y0: 0,
+                x1: Avg2,
+                //yref: 'paper',
+                y1: 30,
+                line: {
+                    color: 'grey',
+                    width: 1.5,
+                    dash: 'dot'
+                }
+            }
+        ],
+        xaxis: {
+            title: 'Tiri concessi'
+        },
+        yaxis: {
+            title: 'Goal expected against'
+        }
+    };
+    Plotly.newPlot('grafic2', data, layout);
+
+    let trace6 ={
+        x: axGABAM,
+        y: asABAM,
+        type: 'scatter',
+        mode: 'markers',
+        text: aMatchBAM,
+        marker:{
+            size: 12,
+            color: 'grey'
+        },
+        name: 'BeforeAtletico'
+    }
+    let trace7 = {
+        x: axGAAAM,
+        y: asAAAM,
+        type: 'scatter',
+        mode: 'markers',
+        text: aMatchAAM,
+        marker: {
+            size: 12,
+            color: 'navy'
+        },
+        name: 'AfterAtletico'
+    }
+
+    data=[trace6, trace7];
+    layout = {title:"Analisi numero tiri ed occasioni concesse prima e dopo partita con l'Atletico",
+        shapes: [{
+            type: 'line',
+            x0: 0,
+            y0: Avg1,
+            x1: 2.4,
+            //yref: 'paper',
+            y1: Avg1,
+            line: {
+                color: 'grey',
+                width: 1.5,
+                dash: 'dot'
+                 }
+             }, {
+            type: 'line',
+            x0: Avg2,
+            y0: 0,
+            x1: Avg2,
+            //yref: 'paper',
+            y1: 30,
+            line: {
+                color: 'grey',
+                width: 1.5,
+                dash: 'dot'
+            }
+        }
+        ],
+        xaxis: {
+            title: 'Tiri concessi'
+        },
+        yaxis: {
+            title: 'Goal expected against'
+        }
+    };
+    Plotly.newPlot('grafic3', data, layout);
 }
 /**
  *  This will parse a delimited string into an array of
