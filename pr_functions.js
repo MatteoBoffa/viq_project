@@ -48,7 +48,7 @@ function loadASync(url,success){
  */
 function csvParse(csv){
     'use strict';
-    let csvRE=/(,|^|\n|\r|\r\n)[ \t]*(?:([^",\r?\n]*)|"((?:[^"]*|"")*)")[ \t]*/g;
+    let csvRE=/(,|^|\r\n|\n|\r)[ \t]*(?:([^",\r?\n]*)|"((?:[^"]*|"")*)")[ \t]*/g;
     let heads = [], rows = [];
     let row, col, line = -1;
     while(true){
@@ -184,49 +184,105 @@ $(document).ready(function(){
 function selectCorrect(data,selection){
 
     let attackStats = ["Data", "Match", "Risultato", "Goal", "Expected Goals", "Tiri eseguiti"];
-    let defensiveStats = ["Data", "Match", "Risultato", "Goal subiti", "Expected goals subiti", "Tiri subiti"];
+    let defensiveStats = ["Data", "Match", "Risultato", "Expected Goals", "Expected goals subiti", "Tiri subiti"];
     let attitudeStats = ["Data", "Match", "Risultato", "Palle intercettate", "Falli (Juve)", "Passaggi riusciti", "Possesso"];
     let usefulData;
-    let noCom;
+    let noCom1;
+    let noCom2;
     selection=parseInt(selection);
     switch (selection) {
         case 1 :
             usefulData = filterData(data,defensiveStats);
-            noCom="#commento1";
+            noCom1="#commento11";
+            noCom2="#commento21";
             break;
         default :
             usefulData = filterData(data,attitudeStats);
-            noCom="#commento2";
+            noCom1="#commento12";
+            noCom2="#commento22";
             break;
         case 3:
             usefulData = filterData(data,attackStats);
-            noCom="#commento3";
+            noCom1="#commento13";
+            noCom2="#commento23";
             break;
     }
-    $("#grafic").html(tableToHtmlElement(usefulData));
     $(".comments").css({"display": "none"});
-    $(noCom).css({"display" : "block"});
+    $(".Grafici").css({"display":"block"});
+    $(noCom1).css({"display" : "block"});
+    $(noCom2).css({"display" : "block"});
+    generaGrafici(usefulData);
 
 }
 
-function generaGrafici(data) {
-    var trace1=
+function generaGrafici(UData) {
+    //PRIMO GRAFICO
+    let date = filterData(UData,["Data"]);
+    let aData =[];
+    let temp = [];
+    for(let i=0;i<date.length;i++){
+        temp = date[i].Data.split("/");
+
+        aData.push(temp[2]+"-"+temp[0]+"-"+temp[1]);
+
+    }
+    console.log(aData);
+    let axGA =[];
+    date =  filterData(UData,["Expected goals subiti"]);
+    for(let i=0;i<date.length;i++){
+        axGA.push(+date[i]["Expected goals subiti"]);
+    }
+    date = filterData(UData,["Expected Goals"]);
+    console.log(axGA);
+
+    let AGa =[];
+    for(let i=0;i<date.length;i++){
+        AGa.push(+date[i]["Expected Goals"]);
+    }
+    console.log(AGa);
+
+
+    //SECONDO GRAFICO
+    let sA = filterData(UData,["Tiri subiti"]);
+
+
+    let trace1=
         {
-            x: nomeSquadre,
-            y: punti,
-            type: 'bar',
-            name: 'Punti'
+            x: aData,
+            y: axGA,
+            type: 'scatter',
+            name: 'Expected goal against',
+            line: { color:"orange"},
+            mode: 'lines'
         };
-    var trace2=
+    let trace2=
         {
-            x: nomeSquadre,
-            y: expectedPoints,
-            type: 'bar',
-            name: 'ExpectedPoints'
+            x: aData,
+            y: AGa,
+            type: 'scatter',
+            name: 'xGoal',
+            line : {
+                color :"navy"
+            },
+            mode: 'lines',
         };
-    var data = [trace1,trace2];
-    var layout = {barmode:'group'};
-    Plotly.newPlot('myDiv', data, layout);
+    let data = [trace1,trace2];
+
+    let layout = {title:"Confronto xGa-Ga stagionale",
+        shapes: [{
+            type: 'line',
+            x0: '2019-02-20',
+            y0: 0,
+            x1: '2019-02-20',
+            //yref: 'paper',
+            y1: 4,
+            line: {
+                color: 'grey',
+                width: 1.5,
+                dash: 'dot'
+            }
+        }]};
+    Plotly.newPlot('grafic1', data, layout);
 }
 /**
  *  This will parse a delimited string into an array of

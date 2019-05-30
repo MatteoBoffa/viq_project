@@ -9,13 +9,12 @@ body{
             'headerCentrale headerCentrale'
             'obiettivi obiettivi'
             'form form'
-            'grafici commenti'
+            'grafici grafici'
             'footer footer';
 }
 .container div{
     margin: 2ex 1em;
     padding: 2ex 1em;
-    border: black solid;
     min-width: 30ex;
 }
 .theHeaderCentrale{
@@ -31,20 +30,15 @@ body{
 .Obiettivi{
     grid-area: obiettivi;
     text-align: justify;
+    border: black solid;
 }
 .Form{
     grid-area: form;
     text-align: center;
+    border: black solid;
 }
 .Grafici{
     grid-area: grafici;
-    text-align: center;
-}
-.Commenti{
-    grid-area: commenti;
-    text-align: center;
-}
-.comments{
     display: none;
 }
 .Footer{
@@ -53,6 +47,7 @@ body{
     font-size: small;
     color: black;
     text-align: center;
+    border: black solid;
 }
 #grafic, #grafic tr, #grafic td{
     border-collapse:collapse;
@@ -85,7 +80,6 @@ body{
                 'obiettivi'
                 'form'
                 'grafici'
-                'commenti'
                 'footer';
     }
     .container > div{

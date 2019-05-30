@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="cssSecondaPagina.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src = "pr_functions.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body>
 <div class="container">
@@ -29,8 +30,8 @@
     <p>Selezionare quali informazioni visionare: </p>
     <form name="Dati rappresentati">
         <select id="Opzioni">
-             <option value="1">Statistiche solidit&aacute; difensiva</option>
-             <option value="2" selected>Atteggiamento squadra</option>
+             <option value="1"  selected>Statistiche solidit&aacute; difensiva</option>
+             <option value="2">Atteggiamento squadra</option>
              <option value="3">Rendimento offensivo</option>
         </select>
         <!--QUA USA jQuery! -->
@@ -60,15 +61,18 @@
     </form>
 </div>
 
-<div id="grafic" class="Grafici">
-    <p>Parte dei grafici</p>
-</div>
-<div id="comments" class="Commenti">
-    <p>Parte con commenti</p>
-    <p id="commento1" class="comments">Primo commento</p>
-    <p id="commento2" class="comments">Secondo commento</p>
-    <p id="commento3" class="comments">Terzo commento</p>
-
+<div class="Grafici">
+    <h3 style="text-align: center">Grafici</h3>
+    <div id="grafic1">
+    </div>
+    <p id="commento11" class="comments">Primo commento</p>
+    <p id="commento12" class="comments">Secondo commento</p>
+    <p id="commento13" class="comments">Terzo commento</p>
+    <div id="grafic2">
+    </div>
+    <p id="commento21" class="comments">Quarto commento</p>
+    <p id="commento22" class="comments">Quinto commento</p>
+    <p id="commento23" class="comments">Sesto commento</p>
 </div>
 
 <div class="Footer">
