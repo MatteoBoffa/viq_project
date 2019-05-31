@@ -220,6 +220,24 @@ function selectCorrect(data,selection){
 
 }
 
+function median(numbers) {
+    // median of [3, 5, 4, 4, 1, 1, 2, 3] = 3
+    var median = 0, numsLen = numbers.length;
+    numbers.sort();
+
+    if (
+        numsLen % 2 === 0 // is even
+    ) {
+        // average of two middle numbers
+        median = (numbers[numsLen / 2 - 1] + numbers[numsLen / 2]) / 2;
+    } else { // is odd
+        // middle number only
+        median = numbers[(numsLen - 1) / 2];
+    }
+
+    return median;
+}
+
 function generaGrafici(UData) {
     //PRIMO GRAFICO
     let date = filterData(UData,["Data"]);
@@ -227,7 +245,6 @@ function generaGrafici(UData) {
     let temp = [];
     for(let i=0;i<date.length;i++){
         temp = date[i].Data.split("/");
-
         aData.push(temp[2]+"-"+temp[0]+"-"+temp[1]);
 
     }
@@ -246,10 +263,26 @@ function generaGrafici(UData) {
     }
     //console.log(AxG);
 
+    let somma=0;
+    let somma3=0;
+    let valoriPreAtletico = [];
+    let valoriPostAtletico = [];
     let rapporto=[];
     for(let i=0;i<date.length;i++){
         rapporto.push(axGA[i]/AxG[i]);
+        if(aData[i]<'2019-02-20'){
+           somma+=rapporto[i];
+           valoriPreAtletico.push(rapporto[i]);
+        }else{
+            somma3+=rapporto[i];
+            valoriPostAtletico.push(rapporto[i]);
+        }
     }
+    //console.log("MEDIANA "+this.median(valoriPreAtletico));
+    //console.log("MEDIANA "+this.median(valoriPostAtletico));
+
+    document.getElementById("avg1").innerHTML=""+(this.median(valoriPreAtletico)).toPrecision(3);
+    document.getElementById("avg2").innerHTML=""+(this.median(valoriPostAtletico)).toPrecision(3);
 
     //SECONDO GRAFICO
 
@@ -271,8 +304,8 @@ function generaGrafici(UData) {
             axGAW.push(+date[i]["Expected goals subiti"]);
         }else if(+date[i]["Goal"]==+date[i]["Goal subiti"]){
             asAD.push(+date[i]["Tiri subiti"]);
-            aMatchD.push(+date[i]["Match"]+" "+date[i]["Risultato"]);
-            axGAD.push(date[i]["Expected goals subiti"]);
+            aMatchD.push(date[i]["Match"]+" "+date[i]["Risultato"]);
+            axGAD.push(+date[i]["Expected goals subiti"]);
         }else if(+date[i]["Goal"]<+date[i]["Goal subiti"]){
             asAL.push(+date[i]["Tiri subiti"]);
             aMatchL.push(date[i]["Match"]+" "+date[i]["Risultato"]);
@@ -445,9 +478,9 @@ function generaGrafici(UData) {
                 }
             },{
                 type: 'line',
-                x0: Avg2,
+                x0: this.median(axGA),
                 y0: 0,
-                x1: Avg2,
+                x1: this.median(axGA),
                 //yref: 'paper',
                 y1: 30,
                 line: {
@@ -458,10 +491,10 @@ function generaGrafici(UData) {
             }
         ],
         xaxis: {
-            title: 'Tiri concessi'
+            title: 'Goal expected against'
         },
         yaxis: {
-            title: 'Goal expected against'
+            title: 'Tiri concessi'
         }
     };
     Plotly.newPlot('grafic2', data, layout);
@@ -507,9 +540,9 @@ function generaGrafici(UData) {
                  }
              }, {
             type: 'line',
-            x0: Avg2,
+            x0: this.median(axGA),
             y0: 0,
-            x1: Avg2,
+            x1: this.median(axGA),
             //yref: 'paper',
             y1: 30,
             line: {
@@ -520,10 +553,10 @@ function generaGrafici(UData) {
         }
         ],
         xaxis: {
-            title: 'Tiri concessi'
+            title: 'Goal expected against'
         },
         yaxis: {
-            title: 'Goal expected against'
+            title: 'Tiri concessi'
         }
     };
     Plotly.newPlot('grafic3', data, layout);

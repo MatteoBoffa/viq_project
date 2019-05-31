@@ -41,6 +41,14 @@ body{
     grid-area: grafici;
     display: none;
 }
+.Grafici h3{
+    text-align: center;
+    padding-bottom: 2ex;
+}
+.Grafici .comments{
+    border: solid black;
+    padding: 1ex 1em;
+}
 .Footer{
     grid-area: footer;
     background-color: red;
@@ -49,26 +57,26 @@ body{
     text-align: center;
     border: black solid;
 }
-#grafic, #grafic tr, #grafic td{
+#table{
+    margin: 0 auto;
+}
+#table, #table tr, #table td{
     border-collapse:collapse;
     text-align: center;
     border-bottom:black 1pt solid;
     padding: 1ex 0.5em;
     color: black;
 }
-#grafc thead, #grafic thead td{
+#table thead, #table thead td{
     background-color: red;
     font-weight: bold;
-    padding-top: 4ex;
     border: black 2pt solid;
 }
-#grafic thead{
-    padding: 10ex 0;
-}
-#grafic tbody tr:nth-child(even){
+
+#table tbody tr:nth-child(even){
     background-color: white;
 }
-#grafic tbody tr:nth-child(odd){
+#table tbody tr:nth-child(odd){
     background-color: papayawhip;
 }
 

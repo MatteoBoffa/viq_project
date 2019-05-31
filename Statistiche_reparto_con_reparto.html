@@ -16,10 +16,9 @@
 </div>
 <div class="Obiettivi">
     <h3>Obiettivi</h3>
-    <p>Nostro intento &eacute; quello di considerare tre macro-argomenti identificabili come:</p>
+    <p>Nostro intento &eacute; quello di considerare due macro-argomenti identificabili come:</p>
     <ul>
         <li>Statistiche solidit&aacute; difensiva</li>
-        <li>Statistiche 'aggressivit&aacute;' squadra</li>
         <li>Rendimento offensivo</li>
     </ul>
     <p>Per ciascuno di essi tenteremo, attraverso le statistiche raccolte e una serie di grafici costruiti con esse, di valutare l'efficacia
@@ -65,19 +64,83 @@
     <h3 style="text-align: center">Grafici</h3>
     <div id="grafic1">
     </div>
-    <p id="commento11" class="comments">Primo commento</p>
-    <p id="commento12" class="comments">Secondo commento</p>
-    <p id="commento13" class="comments">Terzo commento</p>
+    <div id="commento11" class="comments">
+        <h3>Primo commento</h3>
+        <p>Questo grafico rappresenta l'andamento del rapporto xGA/xG durante
+            il corso della stagione. Tanto pi&uacute; il rapporto &eacute; minore
+            di uno e tendente a zero, tanto pi&uacute; la squadra ha avuto buone performance offensive
+            e buona tenuta difensiva (ha prodotto tante occasioni da goal subendone
+            poche).</p>
+        <p>Dal grafico si evince come, a fronte di una buona solidit&acute; manifestata
+            la prima parte della stagione, le cose siano improvvisamente cambiate dopo
+            la partita di Champions League contro l'Atletico Madrid (persa 2-0 e
+            rappresentata dal segmento grigio sul grafico). La squadra dopo quella
+            partita ha mediamente un rapporto xGa/xG>1, con picchi decisamente maggiori
+            rispetto al periodo precedente.</p>
+        <table id="table">
+            <thead><td>Periodo</td><td>Rapporto medio xGa/xG</td></thead>
+            <tr><td>Pre-Atletico</td><td id="avg1"></td></tr>
+            <tr><td>Dopo-Atletico</td><td id="avg2"></td></tr>
+        </table>
+        <p>Si &eacute; scelto di ricorrere al rapporto tra questi due indici piuttosto
+            che ad un semplice tiri concessi / tiri eseguiti soprattutto perch&eacute;
+            cos&iacute; riusciamo avere una migliore percezione della "pericolosit&acute;"
+            dell'occasione (se mediamente quell'occasione si tramuta in goal 9 volte
+            su 10, porter&acute; un contributo di 0,9 xG)</p>
+        <p>Per quanto riguarda la tabella, si &eacute; si scelto di usare la mediana e non
+            la media come indicatore medio; i pochi valori molto piccoli del periodo 'post-Atletico'
+            avrebbero pesato eccessivamente abbassando di molto il valore finale.</p>
+    </div>
+    <div id="commento12" class="comments">
+        <h3>Secondo commento</h3>
+    </div>
+    <div id="commento13" class="comments">
+        <h3>Terzo commento</h3>
+    </div>
     <div id="grafic2">
     </div>
-    <p id="commento21" class="comments">Quarto commento</p>
-    <p id="commento22" class="comments">Quinto commento</p>
-    <p id="commento23" class="comments">Sesto commento</p>
+    <div id="commento21" class="comments">
+        <h3>Secondo commento</h3>
+        <p>Questo grafico rappresenta, nel quadro complessivo della stagione (ogni 'scatter' rappresenta una partita)
+            il numero di tiri in porta concessi alla squadra avversaria sulle ordinate e il numero di xGa sulle ascisse.</p>
+        <p>Scorrendo sopra ciascun elemento &eacute; possibile inoltre vedere a quale partita il dato si riferisca e il
+            risultato finale della suddetta. In generale, il colore verde &eacute; assegnato alle vittorie, il rosso alle
+            sconfitte e il giallo ai pareggi.</p>
+        <p> &Eacute; chiaro come questa squadra sia riuscita a vincere molto quando concedeva poco agli avversari. Infatti, fintanto che
+            il numero di tiri in porta rimaneva nella media (all'incirca sotto i 12 tiri concessi, rappresentati dal segmento tratteggiato
+            orizzontale) anche gli xGa si mantenevano bassi e la squadra portava a casa il risultato; all'aumentare del numero di tiri
+            la squadra inevitabilmente concedeva pi&uacute; occasioni da goal e comprometteva spesso il risultato. </p>
+        <p> Non si possono purtroppo trarre troppe informazioni sul cinismo della squadra (inteso come le volte in cui, pur concedendo,
+            il match si &eacute; poi concluso con una vittoria della Juventus) poich&eacute; sarebbero stati necessari anche i dati
+            delle altre squadre (anche solo quelli dei maggiori contendenti allo scudetto sarebbero bastati). Possiamo tuttavia dedurre,
+            visto il primo posto ottenuto nella classifica reale e il quarto usando quella degli xPts (vedere pagina precedente), che
+            tale indice sarebbe stato, se non il migliore della serie A, almeno positivo.
+        </p>
+    </div>
+    <div id="commento22" class="comments">
+        <h3>Quinto commento</h3>
+    </div>
+    <div id="commento23" class="comments">
+        <h3>Sesto commento</h3>
+    </div>
     <div id="grafic3">
     </div>
-    <p id="commento31" class="comments">Settimo commento</p>
-    <p id="commento32" class="comments">Ottavo commento</p>
-    <p id="commento33" class="comments">Nono commento</p>
+    <div id="commento31" class="comments">
+        <h3>Terzo commento</h3>
+        <p>Infine lo stesso grafico di prima ci porta ora un'informazione differente; colorando di blu le partite dopo l'Atletico Madrid
+            e di grigio quelle precedenti, risulta ancora una volta chiaro il trend negativo che ha accompagnato la stagione juventina
+            in seguito a quella partita</p>
+        <p>Nelle partite post-Atletico infatti, mediamente (la linea tratteggiata verticale &eacute; la mediana degli xGA durante la stagione,
+        mentre quella orizzontale rappresenta la media dei tiri concessi) la squadra era pi&uacute; solida concedendo meno tiri e meno occasioni.</p>
+        <p>Confrontando questo grafico con quello precedente &eacute; anche possibile notare come la maggior parte delle sconfitte e dei pareggi
+        appartengano al periodo post-Atletico.</p>
+    </div>
+    <div id="commento32" class="comments">
+        <h3>Ottavo commento</h3>
+    </div>
+    <div id="commento33" class="comments">
+        <h3>Nono commento</h3>
+    </div>
 </div>
 
 <div class="Footer">
