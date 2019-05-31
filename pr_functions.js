@@ -583,14 +583,16 @@ function generaGrafico2(UData){
     avgGoalPost/=(date.length-no_match_pre_AM);
     let data;
     //GRAFICO 1
-    let trace1=
+    let trace1 =
         {
             x: ["Pre partita Atletico"],
             y: [avgGoalPre],
             orientation : 'v',
             type: 'bar',
             name: 'Media goal',
-            marker: { color:"orange"},
+            width : [0.3],
+            marker: {
+                color:"orange"},
         };
     let trace2=
         {
@@ -599,8 +601,10 @@ function generaGrafico2(UData){
             type: 'bar',
             orientation : 'v',
             name: 'Media goal',
+            width : [0.3],
             marker : {
-                color :"navy"
+                color :"navy",
+
             },
         };
 
