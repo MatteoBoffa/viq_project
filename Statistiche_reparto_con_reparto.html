@@ -11,7 +11,7 @@
 <body>
 <div class="container">
 <div class="theHeaderCentrale">
-<h1>Juventus fc</h1>
+<h1>Juventus FC</h1>
     <h2>Season 2018/2019</h2>
 </div>
 <div class="Obiettivi">
@@ -30,25 +30,17 @@
     <form name="Dati rappresentati">
         <select id="Opzioni">
              <option value="1"  selected>Statistiche solidit&aacute; difensiva</option>
-             <option value="2">Atteggiamento squadra</option>
-             <option value="3">Rendimento offensivo</option>
+             <option value="2">Rendimento offensivo</option>
         </select>
-        <!--QUA USA jQuery! -->
-        <input type="button" id="toGo" value="Scegli" ><!--onclick="function daDefinire()" -->
+        <input type="button" id="toGo" value="Scegli" >
         <input type="reset" id ="toReset" value="Annulla">
         <script>
             let data;
             window.onload = function() {
                 loadASync("Juventus_Stats_.csv",csv =>{
                     data = csvParse(csv);
-                    console.log(data);
                 })
             };
-            setTimeout(function(){
-                console.log(data);
-            },1000);
-
-
             var value;
                 $("#toGo").click(function () {
                     value = $("#Opzioni").val();
