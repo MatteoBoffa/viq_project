@@ -171,9 +171,9 @@ function selectCorrect(data,selection){
         mostra(noCom1,noCom2,noCom3);
         generaGrafici(data);
     } else {
-        noCom1="#commento13";
-        noCom2="#commento23";
-        noCom3="#commento33";
+        noCom1="#commento12";
+        noCom2="#commento22";
+        noCom3="#commento32";
         mostra(noCom1,noCom2,noCom3);
         generaGrafico2(data);
     }
@@ -500,16 +500,28 @@ function generaGrafico2(UData){
     let asW = [];
     let asD = [];
     let asL = [];
-    let aMatchW = [];
-    let aMatchD = [];
-    let aMatchL = [];
+    let aMatchW1 = [];
+    let aMatchW2 = [];
+    let aMatchL1 = [];
+    let aMatchL2 = [];
     let axGW = [];
     let axGD = [];
     let axGL = [];
+    let GL =[];
+    let GD = [];
+    let GW = [];
     let goal2 = 0;
     let goalAg2 = 0;
     let shoots2 = 0;
     let xG2 = 0;
+    let upGW = [];
+    let upxGW = [];
+    let upGDL = [];
+    let upxGDL = [];
+    let downGW = [];
+    let downxGW = [];
+    let downGDL = [];
+    let downxGDL = [];
     let txt2;
     for(let i=0;i<date.length;i++){
 
@@ -518,18 +530,42 @@ function generaGrafico2(UData){
         goal2 = parseInt(date[i]["Goal"]);
         shoots2 = parseInt(date[i]["Tiri eseguiti"]);
         xG2 = parseFloat(date[i]["Expected Goals"]);
-        if(goal2>goalAg2){
+        /*if(goal2>goalAg2){
             asW.push(shoots2);
             aMatchW.push(txt2);
             axGW.push(xG2);
+            GW.push(goal2);
         }else if(goal2 === goalAg2){
             asD.push(shoots2);
             aMatchD.push(txt2);
             axGD.push(xG2);
+            GD.push(goal2);
         }else{
             asL.push(shoots2);
             aMatchL.push(txt2);
             axGL.push(xG2);
+            GL.push(goal2);
+        }*/
+        if(parseInt(xG2)<goal2){
+            if(goal2>goalAg2) {
+                upGW.push(goal2);
+                upxGW.push(xG2);
+                aMatchW1.push(txt2);
+            }else{
+                upGDL.push(goal2);
+                upxGDL.push(xG2);
+                aMatchL1.push(txt2);
+            }
+        }else{
+            if(goal2>goalAg2) {
+                downGW.push(goal2);
+                downxGW.push(xG2);
+                aMatchW2.push(txt2);
+            }else{
+                downGDL.push(goal2);
+                downxGDL.push(xG2);
+                aMatchL2.push(txt2);
+            }
         }
     }
 
@@ -550,6 +586,7 @@ function generaGrafico2(UData){
     let somma1=0;
     let Avg2;
     let somma2=0;
+    let somma3=0;
     let goal3 = 0;
     let goalAg3 = 0;
     let shoots3 = 0;
@@ -576,9 +613,11 @@ function generaGrafico2(UData){
         }
         somma1=somma1+shoots3;
         somma2=somma2+xG3;
+        somma3=somma3+goal3;
     }
     Avg1=somma1/date.length;
     Avg2=somma2/date.length;
+    let Avg3 = somma3/date.length;
     avgGoalPre/=no_match_pre_AM;
     avgGoalPost/=(date.length-no_match_pre_AM);
     let data;
@@ -589,7 +628,7 @@ function generaGrafico2(UData){
             y: [avgGoalPre],
             orientation : 'v',
             type: 'bar',
-            name: 'Media goal',
+            name: 'Media goal pre-Atletico',
             width : [0.3],
             marker: {
                 color:"orange"},
@@ -600,7 +639,7 @@ function generaGrafico2(UData){
             y: [avgGoalPost],
             type: 'bar',
             orientation : 'v',
-            name: 'Media goal',
+            name: 'Media goal post-Atletico',
             width : [0.3],
             marker : {
                 color :"navy",
@@ -616,52 +655,74 @@ function generaGrafico2(UData){
 
     //GRAFICO 2
     let trace3={
-        x: axGW,
-        y: asW,
+        //x: axGW,
+        x: upxGW,
+        //y: asW,
+        y:upGW,
         type: 'scatter',
         mode: 'markers',
-        text: aMatchW,
+        text:aMatchW1,
         marker:{
             size: 12,
             color: 'green'
         },
-        name: 'Won'
+        name: 'More Goals than xG (WON)'
     };
-    let trace4={
-        x: axGD,
-        y: asD,
+        let trace4={
+        x: upxGDL,
+        //y: asD,
+        y:upGDL,
         type: 'scatter',
         mode: 'markers',
-        text: aMatchD,
+        text: aMatchL1,
         marker:{
             size: 12,
-            color: 'yellow'
+            color: 'orange'
         },
-        name: 'Draw'
+        name: 'More Goals than xG (DRAW-LOST)'
     };
     let trace5={
-        x: axGL,
-        y: asL,
+        //x: axGL,
+        x:downxGW,
+        y: downGW,
+        //y: asL,
+        //y:GL,
         type: 'scatter',
         mode: 'markers',
-        text: aMatchL,
+        text: aMatchW2,
+        marker:{
+            size: 12,
+            color: 'lime'
+        },
+        name: 'More xG than Goals (WON)'
+    };
+    let trace8={
+        //x: axGL,
+        x:downxGDL,
+        y: downGDL,
+        //y: asL,
+        //y:GL,
+        type: 'scatter',
+        mode: 'markers',
+        text: aMatchL2,
         marker:{
             size: 12,
             color: 'red'
         },
-        name: 'Lost'
+        name: 'More xG than Goals (DRAW-LOST)'
     };
 
-    data=[trace3, trace4, trace5];
-    layout = {title:"Analisi stagionale numero tiri ed occasioni create",
+    //data=[trace3, trace4, trace5];
+    data=[trace3,trace4,trace5,trace8];
+    layout = {title:"Analisi stagionale goal ed xG",
         shapes: [
             {
                 type: 'line',
-                x0: 0,
-                y0: Avg1,
-                x1: 4,
+                x0: 1,
+                y0: 0,
+                x1: 1,
                 //yref: 'paper',
-                y1: Avg1,
+                y1: 5,
                 line: {
                     color: 'grey',
                     width: 1.5,
@@ -669,11 +730,23 @@ function generaGrafico2(UData){
                 }
             },{
                 type: 'line',
-                x0: Avg2,
+                x0: 2,
                 y0: 0,
-                x1: Avg2,
+                x1: 2,
                 //yref: 'paper',
-                y1: 30,
+                y1: 5,
+                line: {
+                    color: 'grey',
+                    width: 1.5,
+                    dash: 'dot'
+                }
+            },{
+                type: 'line',
+                x0: 3,
+                y0: 0,
+                x1: 3,
+                //yref: 'paper',
+                y1: 5,
                 line: {
                     color: 'grey',
                     width: 1.5,
@@ -685,7 +758,8 @@ function generaGrafico2(UData){
             title: 'xG'
         },
         yaxis: {
-            title: 'Shoots'
+            title: 'Goal',
+            range: [0,5]
         }
     };
     Plotly.newPlot('grafic2', data, layout);
@@ -716,7 +790,7 @@ function generaGrafico2(UData){
     };
 
     data=[trace6, trace7];
-    layout = {title:"Analisi numero tiri ed occasioni concesse prima e dopo partita con l'Atletico",
+    layout = {title:"Analisi numero tiri ed occasioni create prima e dopo partita con l'Atletico",
         shapes: [{
             type: 'line',
             x0: 0,
