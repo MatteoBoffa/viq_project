@@ -212,8 +212,10 @@ function generaGrafici(UData) {
 
     }
     let axGA =[];
-    objArray =  filterData(UData,["Expected goals subiti"]);
+    let txt = [];
+    objArray =  filterData(UData,["Expected goals subiti","Match","Risultato"]);
     for(let i=0;i<objArray.length;i++){
+        txt[i] = objArray[i]["Match"] + " " + objArray[i]["Risultato"];
         axGA.push(parseFloat(objArray[i]["Expected goals subiti"]));
     }
     objArray = filterData(UData,["Expected Goals"]);
@@ -312,6 +314,7 @@ function generaGrafici(UData) {
             y:rapporto,
             type: 'scatter',
             name: 'Rapporto xGA/xG',
+            text : txt,
             line:{color:"orange"},
             mode: 'lines+markers'
         }
@@ -408,7 +411,7 @@ function generaGrafici(UData) {
             }
         ],
         xaxis: {
-            title: 'Goal expected against'
+            title: 'Expected Goal against'
         },
         yaxis: {
             title: 'Tiri concessi'
@@ -480,7 +483,7 @@ function generaGrafici(UData) {
 }
 
 /**
- Generating second graph
+ Generating graphs of the second page
 
  @param {[]} UData - array of object that contains data
 
@@ -497,19 +500,10 @@ function generaGrafico2(UData){
     //SECONDO GRAFICO
 
     date = filterData(UData,["Tiri eseguiti","Goal","Goal subiti","Risultato", "Match", "Expected Goals"]);
-    let asW = [];
-    let asD = [];
-    let asL = [];
     let aMatchW1 = [];
     let aMatchW2 = [];
     let aMatchL1 = [];
     let aMatchL2 = [];
-    let axGW = [];
-    let axGD = [];
-    let axGL = [];
-    let GL =[];
-    let GD = [];
-    let GW = [];
     let goal2 = 0;
     let goalAg2 = 0;
     let shoots2 = 0;
@@ -530,23 +524,7 @@ function generaGrafico2(UData){
         goal2 = parseInt(date[i]["Goal"]);
         shoots2 = parseInt(date[i]["Tiri eseguiti"]);
         xG2 = parseFloat(date[i]["Expected Goals"]);
-        /*if(goal2>goalAg2){
-            asW.push(shoots2);
-            aMatchW.push(txt2);
-            axGW.push(xG2);
-            GW.push(goal2);
-        }else if(goal2 === goalAg2){
-            asD.push(shoots2);
-            aMatchD.push(txt2);
-            axGD.push(xG2);
-            GD.push(goal2);
-        }else{
-            asL.push(shoots2);
-            aMatchL.push(txt2);
-            axGL.push(xG2);
-            GL.push(goal2);
-        }*/
-        if(parseInt(xG2)<goal2){
+        if(Math.floor(xG2)<goal2){
             if(goal2>goalAg2) {
                 upGW.push(goal2);
                 upxGW.push(xG2);
@@ -617,7 +595,6 @@ function generaGrafico2(UData){
     }
     Avg1=somma1/date.length;
     Avg2=somma2/date.length;
-    let Avg3 = somma3/date.length;
     avgGoalPre/=no_match_pre_AM;
     avgGoalPost/=(date.length-no_match_pre_AM);
     let data;
@@ -655,9 +632,7 @@ function generaGrafico2(UData){
 
     //GRAFICO 2
     let trace3={
-        //x: axGW,
         x: upxGW,
-        //y: asW,
         y:upGW,
         type: 'scatter',
         mode: 'markers',
@@ -670,7 +645,6 @@ function generaGrafico2(UData){
     };
         let trace4={
         x: upxGDL,
-        //y: asD,
         y:upGDL,
         type: 'scatter',
         mode: 'markers',
@@ -682,11 +656,8 @@ function generaGrafico2(UData){
         name: 'More Goals than xG (DRAW-LOST)'
     };
     let trace5={
-        //x: axGL,
         x:downxGW,
         y: downGW,
-        //y: asL,
-        //y:GL,
         type: 'scatter',
         mode: 'markers',
         text: aMatchW2,
@@ -697,11 +668,8 @@ function generaGrafico2(UData){
         name: 'More xG than Goals (WON)'
     };
     let trace8={
-        //x: axGL,
         x:downxGDL,
         y: downGDL,
-        //y: asL,
-        //y:GL,
         type: 'scatter',
         mode: 'markers',
         text: aMatchL2,
@@ -712,7 +680,6 @@ function generaGrafico2(UData){
         name: 'More xG than Goals (DRAW-LOST)'
     };
 
-    //data=[trace3, trace4, trace5];
     data=[trace3,trace4,trace5,trace8];
     layout = {title:"Analisi stagionale goal ed xG",
         shapes: [
@@ -721,7 +688,6 @@ function generaGrafico2(UData){
                 x0: 1,
                 y0: 0,
                 x1: 1,
-                //yref: 'paper',
                 y1: 5,
                 line: {
                     color: 'grey',
@@ -733,7 +699,6 @@ function generaGrafico2(UData){
                 x0: 2,
                 y0: 0,
                 x1: 2,
-                //yref: 'paper',
                 y1: 5,
                 line: {
                     color: 'grey',
@@ -745,7 +710,6 @@ function generaGrafico2(UData){
                 x0: 3,
                 y0: 0,
                 x1: 3,
-                //yref: 'paper',
                 y1: 5,
                 line: {
                     color: 'grey',
@@ -796,7 +760,6 @@ function generaGrafico2(UData){
             x0: 0,
             y0: Avg1,
             x1: 4,
-            //yref: 'paper',
             y1: Avg1,
             line: {
                 color: 'grey',
@@ -808,7 +771,6 @@ function generaGrafico2(UData){
             x0: Avg2,
             y0: 0,
             x1: Avg2,
-            //yref: 'paper',
             y1: 30,
             line: {
                 color: 'grey',

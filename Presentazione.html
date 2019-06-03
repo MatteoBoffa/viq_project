@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Presentazione ricerca</title>
+    <title>Progetto VIQ_1</title>
     <link rel="stylesheet" href="foglioDiStile.css">
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
@@ -10,7 +10,7 @@
 <div class="container">
     <div class="theHeaderCentrale">
     <h1>Progetto VIQ : analisi statistiche calcistiche stagione 2018/2019</h1>
-    <h2>a.a. 2018/2019</h2>
+    <h2>A.A. 2018/2019</h2>
     <h2 id="nome1">Matteo Boffa</h2>
     <h2 id="nome2">Nicol&oacute; Bellarmino</h2>
     </div>
@@ -86,7 +86,7 @@
                             marker:{color:"orange"}
                         }
                     ]
-                    var layout = {margin:{t:40,l:150,r:30,b:30},
+                    var layout = {margin:{t:70,l:150,r:30,b:30},
                                   title:"Classifica serie A (expected points)"
                                   };
                     Plotly.newPlot('myDiv2', data2,layout);
@@ -103,7 +103,7 @@
                             marker:{color:"navy"}
                         }
                     ]
-                    var layout = {margin:{t:40,l:150,r:30,b:30},
+                    var layout = {margin:{t:70,l:150,r:30,b:30},
                         title:"Classifica serie A (real points)"};
                     Plotly.newPlot('myDiv3', data3,layout);
                 })
@@ -131,13 +131,6 @@
             <li>Goal subiti</li>
             <li>Tiri effettuati</li>
             <li>Tiri concessi</li>
-            <li>Contrasti effettuati</li>
-            <li>Tackle vinti (percentage)</li>
-            <li>Palle intercettate</li>
-            <li>Falli effettuati</li>
-            <li>Passaggi eseguiti</li>
-            <li>Passaggi eseguiti con successo</li>
-            <li>Possesso palla</li>
         </ul>
         <p>A cui si aggiungono altri 3 parametri molto utilizzati nel settore, ovvero:</p>
         <ul>
@@ -145,7 +138,6 @@
                 a ciascun tiro effettuato durante la partita; tutti questi addendi vengono poi sommati a rappresentare un indicatore di quanti
                 goal avrebbe 'meritato' di segnare la squadra</li>
             <li>Expected Goal against (xGa): indice speculare a quello precedente e rappresenta i goal potenziali a fronte delle occasioni concesse</li>
-            <li>Key passes: passaggi in seguito ai quali &eacute; seguito un tiro verso la porta avversaria</li>
         </ul>
         <p>Indici sull'intero campionato</p>
         <ul>
@@ -156,24 +148,23 @@
 
      <div  class="Esempio">
         <h3>Esempio</h3>
-        <p>Vediamo subito un esempio:</p>
          <div style="border: solid black; padding: 1ex 1em; margin-bottom: 2ex">
          <div id="myDiv">
          </div>
              <h4 style="color: red;">Commento:</h4>
              <p>Quanto rappresentato sopra ha una duplice valenza:</p>
              <ol>
-                 <li> serve ad esemplificare la statistica degli 'expected points'
+                 <li>Serve ad esemplificare la statistica degli 'expected points'
                      in modo che chi visiona la pagina vi prenda familiarit&aacute. Osservando il rendimento
                      reale ed 'atteso' di ciascuna squadra si pu&oacute; notare come alcune abbiano capitalizzato
                      meglio le occasioni loro concesse mentre altre, la Fiorentina per esempio, abbiano prodotto
-                     molto pi&uacute; di quello che effettivamente hanno poi raccolto</li>
-                 <li> traspare gi&aacute; una delle tematiche che ci accompagneranno nella nostra analisi successiva:
+                     molto pi&uacute; di quello che effettivamente hanno poi raccolto.</li>
+                 <li>Traspare gi&aacute; una delle tematiche che ci accompagneranno nella nostra analisi successiva:
                      che strana stagione &eacute; stata quella dei Campioni d'Italia? </li>
              </ol>
          </div>
          <div style="text-align: center; border: solid black; margin-top: 2ex; ">
-             <h4 style="text-align: left;padding: 2ex 1em">Confronto classifica usando real points ed expected points</h4>
+             <h4 style="text-align: center;padding: 2ex 1em">Confronto classifica usando real points ed expected points</h4>
              <div style="display: block">
                 <div style="padding: 1ex 1em; display: inline-block; float: right;width: 45%">
                     <div id="myDiv2">
@@ -186,10 +177,9 @@
              </div>
              <div style="display: block;  padding: 2ex 1em">
                 <h4 style="color: red;">Commento:</h4>
-                 <p>A confermare quanto detto nel punto 1 dell'esempio precedente possiamo notare che, a seconda dell'indicatore scelto,
-                     le classifiche sarebbe ben diverse: </p>
-                 <p>il Napoli sarebbe infatti primo classificato (con margine di una partita),
-                     la Juventus rischierebbe il quarto posto e la lotta salvezza assumerebbe connotati diversi rispetto a quella reale</p>
+                 <p style="text-align: left">A confermare quanto detto nel punto 1 dell'esempio precedente possiamo notare che, a seconda dell'indicatore scelto,
+                     le classifiche sarebbe ben diverse: il Napoli sarebbe infatti primo classificato, la Juventus rischierebbe il quarto
+                     posto e la lotta salvezza assumerebbe connotati diversi rispetto a quella reale</p>
              </div>
          </div>
      </div>
@@ -197,7 +187,7 @@
      <div class="Nuova_Pagina">
         <div class="Testo">
         <p>Terminata questa necessaria introduzione, passiamo ora all'analisi della stagione bianconera.</p>
-        <p>Cliccare sulla freccia avanti per passare alla pagina successiva</p>
+        <p>Cliccare sulla freccia per passare alla pagina successiva</p>
         </div>
         <img src="Freccia.jpg" alt="Freccia cliccabile" usemap="#areeCliccabili" width="50" height="50"/>
         <map name="areeCliccabili">

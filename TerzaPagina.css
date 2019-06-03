@@ -1,0 +1,33 @@
+body{
+    background-color: white;
+    color: black;
+    font-family: "Arial",sans-serif;
+}
+.titolo{
+    padding: 0 1em;
+    border: black solid medium;
+    margin: 1ex auto;
+    font-family: "Times New Roman", serif;
+    background-color: red;
+    text-align: center;
+    color: black;
+}
+.analisiDati{
+      margin: 1ex 1em;
+      border: black solid;
+      padding: 1ex 1em;
+  }
+.conclusioni{
+    margin: 1ex 1em;
+    border: black solid;
+    padding: 1ex 1em;
+}
+a:link{
+    color: navy;
+}
+a:visited{
+    color: navy;
+}
+p{
+    text-align: justify;
+}

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Statistiche reparto con reparto</title>
+    <title>Progetto VIQ_2</title>
     <link rel="stylesheet" href="cssSecondaPagina.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src = "pr_functions.js"></script>
@@ -12,6 +12,7 @@
 <div class="container">
 <div class="theHeaderCentrale">
 <h1>Juventus FC</h1>
+    <h2>Statistiche reparto per reparto</h2>
     <h2>Season 2018/2019</h2>
 </div>
 <div class="Obiettivi">
@@ -58,11 +59,11 @@
     <div id="commento11" class="comments">
         <h3>Primo commento</h3>
         <p>Questo grafico rappresenta l'andamento del rapporto xGA/xG durante
-            il corso della stagione. Tanto pi&uacute; il rapporto &eacute; minore
+            il corso della stagione. Tanto pi&uacute; il rapporto &egrave; minore
             di uno e tendente a zero, tanto pi&uacute; la squadra ha avuto buone performance offensive
             e buona tenuta difensiva (ha prodotto tante occasioni da goal subendone
             poche).</p>
-        <p>Dal grafico si evince come, a fronte di una buona solidit&acute; manifestata
+        <p>Dal grafico si evince come, a fronte di una buona solidit&aacute; manifestata
             la prima parte della stagione, le cose siano improvvisamente cambiate dopo
             la partita di Champions League contro l'Atletico Madrid (persa 2-0 e
             rappresentata dal segmento grigio sul grafico). La squadra dopo quella
@@ -73,25 +74,27 @@
             <tr><td>Pre-Atletico</td><td id="avg1"></td></tr>
             <tr><td>Dopo-Atletico</td><td id="avg2"></td></tr>
         </table>
-        <p>Si &eacute; scelto di ricorrere al rapporto tra questi due indici piuttosto
+        <p>Si &egrave; scelto di ricorrere al rapporto tra questi due indici piuttosto
             che ad un semplice tiri concessi / tiri eseguiti soprattutto perch&eacute;
-            cos&iacute; riusciamo avere una migliore percezione della "pericolosit&acute;"
+            cos&iacute; riusciamo avere una migliore percezione della "pericolosit&aacute;"
             dell'occasione (se mediamente quell'occasione si tramuta in goal 9 volte
-            su 10, porter&acute; un contributo di 0,9 xG)</p>
-        <p>Per quanto riguarda la tabella, si &eacute; si scelto di usare la mediana e non
+            su 10, porter&aacute; un contributo di 0,9 xG)</p>
+        <p>Per quanto riguarda la tabella, si &egrave; si scelto di usare la mediana e non
             la media come indicatore medio; i pochi valori molto piccoli del periodo 'post-Atletico'
             avrebbero pesato eccessivamente abbassando di molto il valore finale.</p>
     </div>
     <div id="commento12" class="comments">
         <h3>Primo commento</h3>
-        <p>Questo grafico rappresenta la media del numero di goal segnati a partita prima della partita di Champions con
+        <p>Questo grafico rappresenta la media del numero di goal segnati prima della partita di Champions con
             l'Atletico Madrid e dopo. </p>
+        <p>&Egrave; evidente come tale partita segni un punto di svolta in fatto di realizzazioni; la media
+            ottenuto dopo risulta infatti quasi dimezzata rispetto a quella precedente.</p>
         <p>La decisione di utilizzare un istogramma piuttosto che un grafico scatter che evidenziasse
-            l'andamento stagionale &eacute; nata perch&eacute; in questa circostanza il confronto assoluto ci sembrava
+            l'andamento stagionale &egrave; nata perch&eacute; in questa circostanza il confronto assoluto ci sembrava
             preferibile e pi&uacute; immediato (il fatto che una squadra dimezzi da un certo punto in poi la sua media goal
-            &eacute; di per s&eacute; rilevante).</p>
-        <p>Si &eacute; preferito utilizzare la media piuttosto che la mediana visto il range ridotto (la squadra ha segnato
-            nel caso peggiore nessun goal e nel migliore quattro; non c'é quindi un caso da otto goal per esempio che vada a
+            &egrave; di per s&eacute; rilevante).</p>
+        <p>Si &egrave; preferito utilizzare la media piuttosto che la mediana visto il range ridotto (la squadra ha segnato
+            nel caso peggiore nessun goal e nel migliore quattro; non c'&egrave; quindi un caso da otto goal per esempio che vada a
             pesare troppo sulle statistiche del primo periodo alzandone il valore medio).</p>
     </div>
     <div id="grafic2">
@@ -100,15 +103,15 @@
         <h3>Secondo commento</h3>
         <p>Questo grafico rappresenta, nel quadro complessivo della stagione (ogni 'scatter' rappresenta una partita)
             il numero di tiri in porta concessi alla squadra avversaria sulle ordinate e il numero di xGa sulle ascisse.</p>
-        <p>Scorrendo sopra ciascun elemento &eacute; possibile inoltre vedere a quale partita il dato si riferisca e il
-            risultato finale della suddetta. In generale, il colore verde &eacute; assegnato alle vittorie, il rosso alle
+        <p>Scorrendo sopra ciascun elemento &egrave; possibile inoltre vedere a quale partita il dato si riferisca e il
+            risultato finale della suddetta. In generale, il colore verde &egrave; assegnato alle vittorie, il rosso alle
             sconfitte e il giallo ai pareggi.</p>
-        <p> &Eacute; chiaro come questa squadra sia riuscita a vincere molto quando concedeva poco agli avversari. Infatti, fintanto che
+        <p> &Egrave; chiaro come questa squadra sia riuscita a vincere molto quando concedeva poco agli avversari. Infatti, fintanto che
             il numero di tiri in porta rimaneva nella media (all'incirca sotto i 12 tiri concessi, rappresentati dal segmento tratteggiato
             orizzontale) anche gli xGa si mantenevano bassi e la squadra portava a casa il risultato; all'aumentare del numero di tiri
             la squadra inevitabilmente concedeva pi&uacute; occasioni da goal e comprometteva spesso il risultato. </p>
         <p> Non si possono purtroppo trarre troppe informazioni sul cinismo della squadra (inteso come le volte in cui, pur concedendo,
-            il match si &eacute; poi concluso con una vittoria della Juventus) poich&eacute; sarebbero stati necessari anche i dati
+            il match si &egrave; poi concluso con una vittoria della Juventus) poich&eacute; sarebbero stati necessari anche i dati
             delle altre squadre (anche solo quelli dei maggiori contendenti allo scudetto sarebbero bastati). Possiamo tuttavia dedurre,
             visto il primo posto ottenuto nella classifica reale e il quarto usando quella degli xPts (vedere pagina precedente), che
             tale indice sarebbe stato, se non il migliore della serie A, almeno positivo.
@@ -117,23 +120,23 @@
     <div id="commento22" class="comments">
         <h3>Secondo commento</h3>
         <p>Questo grafico rappresenta, partita per partita, goal segnati e xG. Si &eacute; deciso di colorare di rosso e di verde chiaro le partite
-            dove gli xG sono stati maggiori dei goal (ci si sarebbe attesi di pi&uacute; dalla squadra che per&oacute; non &eacute;
+            dove gli xG sono stati maggiori dei goal (ci si sarebbe attesi di pi&uacute; dalla squadra che per&oacute; non &egrave;
             riuscita a concretizzare) e di verde scuro ed arancione le partite dove invece i goal sono stati maggiori. Le cromature indicano
             se, a prescindere dalla concretezza nel segnare pi&uacute; o meno goal, la squadra &eacute; riuscita a portare a casa il
             risultato o meno (verde scuro e verde chiaro s&iacute;; diversamente altrimenti).</p>
         <p>Viste le molte critiche ricevute durante il corso della stagione sull'atteggiamento di una squadra che si basava molto sulle
-            individualit&acute; e bravura dei suoi campioni piuttosto che su un gioco corale e spumeggiante ci &eacute; parso opportuno
+            individualit&aacute; e bravura dei suoi campioni piuttosto che su un gioco corale e spumeggiante ci &egrave; parso opportuno
             indagare sulla fondatezza di tali opinioni.</p>
         <p>Il risutato dimostra l'indubbio cinismo di fondo della Juventus; se ad xG alto (che ricordiamo essere la sommatoria pesata delle varie occasioni
-            da goal ottenute) &eacute; associabile l'idea di una squadra molto presente nella met&acute; campo avversaria, in questa stagione la squadra
-            torinese ha pi&uacute; volte raggiunto il doppio centro senza arrivare e superare i 2xG. Questo significa che, con poche occasioni o pi&acute; occasioni
+            da goal ottenute) &egrave; associabile l'idea di una squadra molto presente nella met&aacute; campo avversaria, in questa stagione la squadra
+            torinese ha pi&uacute; volte raggiunto il doppio centro senza arrivare e superare i 2xG. Questo significa che, con poche occasioni o pi&uacute; occasioni
             con basso peso (e quindi normalmente poco pericolose) la Juventus &eacute; riuscita a concretizzare moltissimo (giustificando forse i risultati della prima
-            pagina che la davano prima nella classifica reale ma solo quarta nella speciale classifica con gli xG).</p>
+            pagina che la davano prima nella classifica reale ma solo quarta nella speciale classifica con gli xPTS).</p>
         <p>Altro particolare che va notato &eacute; come spesso sia riuscita a 'fare risultato' con 'brutte prestazioni' in partite importanti. Osserviamo per
             esempio che il pallino verde scuro corrispondente a 0.59xG e 2 goal segnati rappresenta lo scontro diretto con il Napoli; quello a 0.9xG e 2 goal
             segnati rappresenta la partita-scudetto con la Fiorentina e infine la partita con l'Ajax a 0.7xG e 1 goal, dove pur soffrendo per tutta la partita
             (vedere il picco di xGA nella stessa partita nella parte sulle statistiche difensive) la squadra era riuscita a portare a casa un buon risultato
-            (anche se a solo 0.1xG di distanza su questo stesso grafico c'&eacute; anche l'amara delusione).</p>
+            (anche se a solo 0.1xG di distanza su questo stesso grafico c'&egrave; anche l'amara delusione).</p>
     </div>
     <div id="grafic3">
     </div>
@@ -142,15 +145,15 @@
         <p>Infine lo stesso grafico di prima ci porta ora un'informazione differente; colorando di blu le partite dopo l'Atletico Madrid
             e di grigio quelle precedenti, risulta ancora una volta chiaro il trend negativo che ha accompagnato la stagione juventina
             in seguito a quella partita</p>
-        <p>Nelle partite post-Atletico infatti, mediamente (la linea tratteggiata verticale &eacute; la mediana degli xGA durante la stagione,
+        <p>Nelle partite pre-Atletico infatti, mediamente (la linea tratteggiata verticale &egrave; la mediana degli xGA durante la stagione,
         mentre quella orizzontale rappresenta la media dei tiri concessi) la squadra era pi&uacute; solida concedendo meno tiri e meno occasioni.</p>
-        <p>Confrontando questo grafico con quello precedente &eacute; anche possibile notare come la maggior parte delle sconfitte e dei pareggi
+        <p>Confrontando questo grafico con quello precedente &egrave; anche possibile notare come la maggior parte delle sconfitte e dei pareggi
         appartengano al periodo post-Atletico.</p>
     </div>
     <div id="commento32" class="comments">
         <h3>Terzo commento</h3>
         <p>Ultimo grafico è quello che rappresenta i tiri fatti e le xG ottenute in ogni partita. Chiaramente si vogliono ripercorrere le orme del
-            primo grafico di questa pagina, mostrando pi&acute; esplicitamente come, dopo la fatidica partita con l'Atletico Madrid in Champions,
+            primo grafico di questa pagina, mostrando pi&uacute; esplicitamente come, dopo la fatidica partita con l'Atletico Madrid in Champions,
             qualcosa sia cambiato nell'atteggiamento della squadra.</p>
         <p>Come si pu&oacute; notare, il numero di tiri in porta e le xG create scendono vistosamente; tutti gli scatter blu, rappresentanti le partite
             post-Atletico, sono al di sotto della media stagionale (ed anzi, di fatto contribuscono in prima battuta ad abbassarla rispetto alla prima parte
@@ -164,7 +167,7 @@
             <li><a href="https://understat.com/league/Serie_A/2018">prima Fonte (xG, xGA e xPTS)</a></li>
             <li><a href="https://www.whoscored.com/Teams/87/Fixtures/Italy-Juventus">seconda Fonte</a></li>
         </ul>
-    <p>Per le considerazioni sui dati premere <a href="ConsiderazioniSuiDati.html">qui</a></p>
+    <p>Per le considerazioni sui dati e le conclusioni premere <a href="ConsiderazioniSuiDati.html">qui</a></p>
 </div>
 </div>
 </body>
