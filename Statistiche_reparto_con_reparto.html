@@ -36,6 +36,7 @@
         <input type="button" id="toGo" value="Scegli" >
         <script>
             let data;
+            let flag = 0;
             window.onload = function() {
                 loadASync("Juventus_Stats_.csv",csv =>{
                     data = csvParse(csv);
@@ -44,9 +45,13 @@
             var value;
                 $("#toGo").click(function () {
                     value = $("#Opzioni").val();
+                    flag = 1;
                    selectCorrect(data,value);
                 });
-
+            window.onresize = function () {
+                if (flag === 1)
+                    selectCorrect(data,value);
+            }
 
         </script>
     </form>

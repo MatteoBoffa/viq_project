@@ -9,7 +9,8 @@
 <body>
 <div class="container">
     <div class="theHeaderCentrale">
-    <h1>Progetto VIQ : analisi statistiche calcistiche stagione 2018/2019</h1>
+    <h1>Progetto VIQ</h1>
+        <h1>"Che parlino le statistiche" : la Juventus nel 2018/2019</h1>
     <h2>A.A. 2018/2019</h2>
     <h2 id="nome1">Matteo Boffa</h2>
     <h2 id="nome2">Nicol&oacute; Bellarmino</h2>
@@ -19,95 +20,8 @@
         <script src="pr_functions.js"></script>
 
         <script>
-            window.onload = function () {
-                let data;
-                //Async request : defining "success" function
-                loadASync("serie_a_stats.csv", csv => {
-                    //CREAZIONE TABELLA
-                    data = csvParse(csv);
-                    console.log(data);
-                    let columns = ["N", "Team", "M", "W", "D", "L", "G", "GA", "PTS", "xG", "xGA", "xPTS"];
-                    document.getElementById("myTable").append(tableToHtmlElement(noPlusNoMinus(data, columns)));
-
-                    //CREAZIONE GRAFICO 1
-                    let nomeSquadre = [];
-                    for(let i=0;i<filterData(data,['Team']).length;i++){
-                        nomeSquadre.push((filterData(data,['Team'])[i]).Team);
-                    }
-                    let punti = [];
-                    for(let i=0;i<filterData(data,['PTS']).length;i++){
-                        punti.push((filterData(data,['PTS'])[i]).PTS);
-                    }
-                    let expectedPoints = [];
-                    for(let i=0;i<noPlusNoMinus(data,['xPTS']).length;i++){
-                        expectedPoints.push((noPlusNoMinus(data,['xPTS'])[i]).xPTS);
-                    }
-                    var trace1=
-                        {
-                            x: nomeSquadre,
-                            y: punti,
-                            type: 'bar',
-                            name: 'Punti',
-                            marker:{color:"red"}
-                        };
-                    var trace2=
-                        {
-                            x: nomeSquadre,
-                            y: expectedPoints,
-                            type: 'bar',
-                            name: 'ExpectedPoints',
-                            marker:{color:"navy"}
-                        };
-                    var datiGrafico = [trace1,trace2];
-                    var layout = {barmode:'group',
-                                title:"Confronto punti-expected points per ciascuna squadra",
-                                margin:{t:50,l:60,r:30,b:80}};
-                    Plotly.newPlot('myDiv', datiGrafico, layout);
-
-                    //GRAFICO 2
-
-                    let datiSecondo = noPlusNoMinus(data,['Team','xPTS']);
-                    datiSecondo.sort((a,b)=>b.xPTS-a.xPTS);
-
-                    let nomeSquadre1=[];
-                    for(let i=0;i<filterData(datiSecondo,['Team']).length;i++){
-                        nomeSquadre1.push((filterData(datiSecondo,['Team'])[i]).Team);
-                    }
-                    expectedPoints=[];
-                    for(let i=0;i<filterData(datiSecondo,['xPTS']).length;i++){
-                        expectedPoints.push((filterData(datiSecondo,['xPTS'])[i]).xPTS);
-                    }
-                    var data2=[
-                        {
-                            x: expectedPoints,
-                            y: nomeSquadre1,
-                            orientation: 'h',
-                            type: 'bar',
-                            marker:{color:"orange"}
-                        }
-                    ]
-                    var layout = {margin:{t:70,l:150,r:30,b:30},
-                                  title:"Classifica serie A (expected points)"
-                                  };
-                    Plotly.newPlot('myDiv2', data2,layout);
-
-                    //GRAFICO 3
-                    console.log(expectedPoints);
-                    console.log(nomeSquadre);
-                    var data3=[
-                        {
-                            x: punti,
-                            y: nomeSquadre,
-                            orientation: 'h',
-                            type: 'bar',
-                            marker:{color:"navy"}
-                        }
-                    ]
-                    var layout = {margin:{t:70,l:150,r:30,b:30},
-                        title:"Classifica serie A (real points)"};
-                    Plotly.newPlot('myDiv3', data3,layout);
-                })
-            }
+            window.onload = generaGraficopage1;
+            window.onresize = generaGraficopage1;
         </script>
         <h3>Classifica Serie A 2018/2019</h3>
         <div id = "myTable"></div>

@@ -80,8 +80,8 @@ function csvParse(csv){
  * @returns {HTMLTableElement}
  */
 function tableToHtmlElement(data){
-    let res = document.createElement("table");
-    let html ="<thead>";
+
+    let html ="<table><thead>";
     for(let h in data[0])
         if(data[0].hasOwnProperty(h))
             html+="<th>"+h+"</th>";
@@ -94,8 +94,8 @@ function tableToHtmlElement(data){
         html+="</tr>";
     }
     html+="</tbody></table>";
-    res.innerHTML = html;
-    return res;
+    //res.innerHTML = html;
+    return html;
 }
 
 
@@ -787,4 +787,100 @@ function generaGrafico2(UData){
         }
     };
     Plotly.newPlot('grafic3', data, layout);
+}
+
+function generaGraficopage1() {
+    let data;
+    //Async request : defining "success" function
+    loadASync("serie_a_stats.csv", csv => {
+        //CREAZIONE TABELLA
+        data = csvParse(csv);
+        console.log(data);
+        let columns = ["N", "Team", "M", "W", "D", "L", "G", "GA", "PTS", "xG", "xGA", "xPTS"];
+
+        document.getElementById("myTable").innerHTML=(tableToHtmlElement(noPlusNoMinus(data, columns)));
+
+        //CREAZIONE GRAFICO 1
+        let nomeSquadre = [];
+        for (let i = 0; i < filterData(data, ['Team']).length; i++) {
+            nomeSquadre.push((filterData(data, ['Team'])[i]).Team);
+        }
+        let punti = [];
+        for (let i = 0; i < filterData(data, ['PTS']).length; i++) {
+            punti.push((filterData(data, ['PTS'])[i]).PTS);
+        }
+        let expectedPoints = [];
+        for (let i = 0; i < noPlusNoMinus(data, ['xPTS']).length; i++) {
+            expectedPoints.push((noPlusNoMinus(data, ['xPTS'])[i]).xPTS);
+        }
+        var trace1 =
+            {
+                x: nomeSquadre,
+                y: punti,
+                type: 'bar',
+                name: 'Punti',
+                marker: {color: "red"}
+            };
+        var trace2 =
+            {
+                x: nomeSquadre,
+                y: expectedPoints,
+                type: 'bar',
+                name: 'ExpectedPoints',
+                marker: {color: "navy"}
+            };
+        var datiGrafico = [trace1, trace2];
+        var layout = {
+            barmode: 'group',
+            title: "Confronto punti-expected points per ciascuna squadra",
+            margin: {t: 50, l: 60, r: 30, b: 80}
+        };
+        Plotly.newPlot('myDiv', datiGrafico, layout);
+
+        //GRAFICO 2
+
+        let datiSecondo = noPlusNoMinus(data, ['Team', 'xPTS']);
+        datiSecondo.sort((a, b) => b.xPTS - a.xPTS);
+
+        let nomeSquadre1 = [];
+        for (let i = 0; i < filterData(datiSecondo, ['Team']).length; i++) {
+            nomeSquadre1.push((filterData(datiSecondo, ['Team'])[i]).Team);
+        }
+        expectedPoints = [];
+        for (let i = 0; i < filterData(datiSecondo, ['xPTS']).length; i++) {
+            expectedPoints.push((filterData(datiSecondo, ['xPTS'])[i]).xPTS);
+        }
+        var data2 = [
+            {
+                x: expectedPoints,
+                y: nomeSquadre1,
+                orientation: 'h',
+                type: 'bar',
+                marker: {color: "orange"}
+            }
+        ]
+        var layout = {
+            margin: {t: 70, l: 150, r: 30, b: 30},
+            title: "Classifica serie A (expected points)"
+        };
+        Plotly.newPlot('myDiv2', data2, layout);
+
+        //GRAFICO 3
+        console.log(expectedPoints);
+        console.log(nomeSquadre);
+        var data3 = [
+            {
+                x: punti,
+                y: nomeSquadre,
+                orientation: 'h',
+                type: 'bar',
+                marker: {color: "navy"}
+            }
+        ]
+        var layout = {
+            margin: {t: 70, l: 150, r: 30, b: 30},
+            title: "Classifica serie A (real points)"
+        };
+        Plotly.newPlot('myDiv3', data3, layout);
+    })
 }
